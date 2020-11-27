@@ -2,7 +2,7 @@ package de.senacor.innolab.graalvm.customer.service;
 
 import de.senacor.innolab.graalvm.customer.controller.openapiMock.model.CustomerDto;
 import de.senacor.innolab.graalvm.customer.model.Customer;
-//import de.senacor.innolab.graalvm.customer.model.CustomerRepository;
+import de.senacor.innolab.graalvm.customer.model.CustomerRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -14,27 +14,24 @@ import java.util.Optional;
 @AllArgsConstructor
 public class CustomerService {
 
-    //private CustomerRepository customerRepository;
+    private CustomerRepository customerRepository;
 
     public Collection<Customer> getAllCustomer() {
-        // return customerRepository.findAll();
-        return Collections.emptyList();
+        return customerRepository.findAll();
     }
 
     public Customer get(long customerId) {
-//        return customerRepository.findById(customerId)
-//                .orElseThrow(() -> new RuntimeException(
-//                        String.format("Customer with id %d was not found.", customerId)));
-        throw new UnsupportedOperationException();
+        return customerRepository.findById(customerId)
+                .orElseThrow(() -> new RuntimeException(
+                        String.format("Customer with id %d was not found.", customerId)));
     }
 
     public Customer create(CustomerDto dto) {
-//        return customerRepository.save(Customer.builder()
-//                .firstName(dto.getFirstName())
-//                .lastName(dto.getLastName())
-//                .birthdate(dto.getBirthdate())
-//                .build());
-        throw new UnsupportedOperationException();
+        return customerRepository.save(Customer.builder()
+                .firstName(dto.getFirstName())
+                .lastName(dto.getLastName())
+                .birthdate(dto.getBirthdate())
+                .build());
     }
 
     public Customer update(long customerId, CustomerDto update) {
@@ -44,11 +41,10 @@ public class CustomerService {
         Optional.ofNullable(update.getLastName()).ifPresent(customer::setLastName);
         Optional.ofNullable(update.getBirthdate()).ifPresent(customer::setBirthdate);
 
-        // return customerRepository.save(customer);
-        return customer;
+        return customerRepository.save(customer);
     }
 
     public void delete(long customerId) {
-        // customerRepository.deleteById(customerId);
+        customerRepository.deleteById(customerId);
     }
 }
