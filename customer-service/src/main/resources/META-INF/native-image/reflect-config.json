@@ -213,7 +213,7 @@
   "methods":[{"name":"<init>","parameterTypes":[] }]
 },
 {
-  "name":"com.sun.proxy.$Proxy116",
+  "name":"com.sun.proxy.$Proxy110",
   "allDeclaredFields":true,
   "allDeclaredMethods":true,
   "allPublicMethods":true
@@ -643,10 +643,6 @@
   "allPublicMethods":true
 },
 {
-  "name":"java.io.File",
-  "methods":[{"name":"toPath","parameterTypes":[] }]
-},
-{
   "name":"java.io.FilePermission"
 },
 {
@@ -656,8 +652,7 @@
 {
   "name":"java.io.Serializable",
   "allDeclaredMethods":true,
-  "allPublicMethods":true,
-  "allDeclaredConstructors":true
+  "allPublicMethods":true
 },
 {
   "name":"java.io.Serializable[]"
@@ -685,16 +680,7 @@
 {
   "name":"java.lang.Class",
   "allDeclaredMethods":true,
-  "methods":[
-    {"name":"getAnnotatedInterfaces","parameterTypes":[] }, 
-    {"name":"getAnnotatedSuperclass","parameterTypes":[] }, 
-    {"name":"getDeclaredMethod","parameterTypes":["java.lang.String","java.lang.Class[]"] }, 
-    {"name":"getMethod","parameterTypes":["java.lang.String","java.lang.Class[]"] }, 
-    {"name":"getModule","parameterTypes":[] }, 
-    {"name":"getNestHost","parameterTypes":[] }, 
-    {"name":"getNestMembers","parameterTypes":[] }, 
-    {"name":"isNestmateOf","parameterTypes":["java.lang.Class"] }
-  ]
+  "methods":[{"name":"getModule","parameterTypes":[] }]
 },
 {
   "name":"java.lang.ClassLoader",
@@ -746,8 +732,7 @@
 {
   "name":"java.lang.Object",
   "allDeclaredMethods":true,
-  "allPublicMethods":true,
-  "allDeclaredConstructors":true
+  "allPublicMethods":true
 },
 {
   "name":"java.lang.Object[]"
@@ -784,9 +769,6 @@
 },
 {
   "name":"java.lang.Void",
-  "allDeclaredFields":true,
-  "allDeclaredMethods":true,
-  "allDeclaredConstructors":true,
   "fields":[{"name":"TYPE"}]
 },
 {
@@ -814,16 +796,7 @@
 },
 {
   "name":"java.lang.invoke.MethodHandles",
-  "allDeclaredMethods":true,
-  "methods":[{"name":"privateLookupIn","parameterTypes":["java.lang.Class","java.lang.invoke.MethodHandles$Lookup"] }]
-},
-{
-  "name":"java.lang.invoke.MethodHandles$Lookup",
-  "methods":[
-    {"name":"defineClass","parameterTypes":["byte[]"] }, 
-    {"name":"lookupClass","parameterTypes":[] }, 
-    {"name":"lookupModes","parameterTypes":[] }
-  ]
+  "allDeclaredMethods":true
 },
 {
   "name":"java.lang.management.BufferPoolMXBean",
@@ -894,30 +867,8 @@
   "methods":[{"name":"canAccess","parameterTypes":["java.lang.Object"] }]
 },
 {
-  "name":"java.lang.reflect.AnnotatedArrayType",
-  "methods":[{"name":"getAnnotatedGenericComponentType","parameterTypes":[] }]
-},
-{
   "name":"java.lang.reflect.AnnotatedElement",
   "allPublicMethods":true
-},
-{
-  "name":"java.lang.reflect.AnnotatedType",
-  "methods":[{"name":"getType","parameterTypes":[] }]
-},
-{
-  "name":"java.lang.reflect.Executable",
-  "methods":[
-    {"name":"getAnnotatedExceptionTypes","parameterTypes":[] }, 
-    {"name":"getAnnotatedParameterTypes","parameterTypes":[] }, 
-    {"name":"getAnnotatedReceiverType","parameterTypes":[] }, 
-    {"name":"getParameterCount","parameterTypes":[] }, 
-    {"name":"getParameters","parameterTypes":[] }
-  ]
-},
-{
-  "name":"java.lang.reflect.Field",
-  "methods":[{"name":"getAnnotatedType","parameterTypes":[] }]
 },
 {
   "name":"java.lang.reflect.GenericDeclaration",
@@ -925,18 +876,6 @@
 },
 {
   "name":"java.lang.reflect.InaccessibleObjectException"
-},
-{
-  "name":"java.lang.reflect.Method",
-  "methods":[{"name":"getAnnotatedReturnType","parameterTypes":[] }]
-},
-{
-  "name":"java.lang.reflect.Parameter",
-  "methods":[
-    {"name":"getModifiers","parameterTypes":[] }, 
-    {"name":"getName","parameterTypes":[] }, 
-    {"name":"isNamePresent","parameterTypes":[] }
-  ]
 },
 {
   "name":"java.lang.reflect.Proxy",
@@ -976,22 +915,6 @@
 {
   "name":"java.net.URLPermission",
   "methods":[{"name":"<init>","parameterTypes":["java.lang.String","java.lang.String"] }]
-},
-{
-  "name":"java.nio.file.CopyOption"
-},
-{
-  "name":"java.nio.file.CopyOption[]"
-},
-{
-  "name":"java.nio.file.Files",
-  "methods":[{"name":"move","parameterTypes":["java.nio.file.Path","java.nio.file.Path","java.nio.file.CopyOption[]"] }]
-},
-{
-  "name":"java.nio.file.Path"
-},
-{
-  "name":"java.nio.file.StandardCopyOption"
 },
 {
   "name":"java.security.AllPermission"
@@ -1227,6 +1150,10 @@
 },
 {
   "name":"javax.persistence.Table",
+  "allDeclaredMethods":true
+},
+{
+  "name":"javax.persistence.Transient",
   "allDeclaredMethods":true
 },
 {
@@ -1532,11 +1459,11 @@
   "allPublicMethods":true
 },
 {
-  "name":"org.hibernate.bytecode.internal.bytebuddy.BytecodeProviderImpl",
+  "name":"org.hibernate.bytecode.internal.none.BytecodeProviderImpl",
   "allPublicMethods":true
 },
 {
-  "name":"org.hibernate.bytecode.internal.bytebuddy.ProxyFactoryFactoryImpl",
+  "name":"org.hibernate.bytecode.internal.none.NoProxyFactoryFactory",
   "allPublicMethods":true
 },
 {
@@ -1553,10 +1480,6 @@
 },
 {
   "name":"org.hibernate.engine.config.internal.ConfigurationServiceImpl",
-  "allPublicMethods":true
-},
-{
-  "name":"org.hibernate.engine.jdbc.batch.internal.BatchBuilderImpl",
   "allPublicMethods":true
 },
 {
@@ -1585,6 +1508,22 @@
 },
 {
   "name":"org.hibernate.engine.query.internal.NativeQueryInterpreterStandardImpl",
+  "allPublicMethods":true
+},
+{
+  "name":"org.hibernate.engine.spi.Managed",
+  "allPublicMethods":true
+},
+{
+  "name":"org.hibernate.engine.spi.ManagedEntity",
+  "allPublicMethods":true
+},
+{
+  "name":"org.hibernate.engine.spi.PersistentAttributeInterceptable",
+  "allPublicMethods":true
+},
+{
+  "name":"org.hibernate.engine.spi.SelfDirtinessTracker",
   "allPublicMethods":true
 },
 {
@@ -1664,50 +1603,6 @@
   "name":"org.hibernate.event.spi.SaveOrUpdateEventListener[]"
 },
 {
-  "name":"org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory",
-  "allPublicMethods":true
-},
-{
-  "name":"org.hibernate.hql.internal.ast.HqlToken",
-  "methods":[{"name":"<init>","parameterTypes":[] }]
-},
-{
-  "name":"org.hibernate.hql.internal.ast.tree.DotNode",
-  "methods":[{"name":"<init>","parameterTypes":[] }]
-},
-{
-  "name":"org.hibernate.hql.internal.ast.tree.FromClause",
-  "methods":[{"name":"<init>","parameterTypes":[] }]
-},
-{
-  "name":"org.hibernate.hql.internal.ast.tree.FromElement",
-  "methods":[{"name":"<init>","parameterTypes":[] }]
-},
-{
-  "name":"org.hibernate.hql.internal.ast.tree.IdentNode",
-  "methods":[{"name":"<init>","parameterTypes":[] }]
-},
-{
-  "name":"org.hibernate.hql.internal.ast.tree.Node",
-  "methods":[{"name":"<init>","parameterTypes":[] }]
-},
-{
-  "name":"org.hibernate.hql.internal.ast.tree.QueryNode",
-  "methods":[{"name":"<init>","parameterTypes":[] }]
-},
-{
-  "name":"org.hibernate.hql.internal.ast.tree.SelectClause",
-  "methods":[{"name":"<init>","parameterTypes":[] }]
-},
-{
-  "name":"org.hibernate.hql.internal.ast.tree.SqlFragment",
-  "methods":[{"name":"<init>","parameterTypes":[] }]
-},
-{
-  "name":"org.hibernate.hql.internal.ast.tree.SqlNode",
-  "methods":[{"name":"<init>","parameterTypes":[] }]
-},
-{
   "name":"org.hibernate.id.IdentityGenerator",
   "methods":[{"name":"<init>","parameterTypes":[] }]
 },
@@ -1757,19 +1652,7 @@
   "allPublicMethods":true
 },
 {
-  "name":"org.hibernate.proxy.HibernateProxy",
-  "allDeclaredMethods":true,
-  "allDeclaredConstructors":true
-},
-{
-  "name":"org.hibernate.proxy.ProxyConfiguration",
-  "allDeclaredMethods":true,
-  "allDeclaredConstructors":true
-},
-{
-  "name":"org.hibernate.proxy.ProxyConfiguration$InterceptorDispatcher",
-  "allDeclaredMethods":true,
-  "allDeclaredConstructors":true
+  "name":"org.hibernate.proxy.HibernateProxy"
 },
 {
   "name":"org.hibernate.query.QueryProducer",
@@ -2520,7 +2403,7 @@
   "allDeclaredConstructors":true
 },
 {
-  "name":"org.springframework.boot.actuate.autoconfigure.web.servlet.ServletManagementContextAutoConfiguration$$Lambda$903/0x0000000840661440",
+  "name":"org.springframework.boot.actuate.autoconfigure.web.servlet.ServletManagementContextAutoConfiguration$$Lambda$906/0x000000084068fc40",
   "allDeclaredFields":true,
   "allDeclaredMethods":true,
   "methods":[{"name":"getServletPath","parameterTypes":[] }]
@@ -3161,13 +3044,13 @@
   "allDeclaredConstructors":true
 },
 {
-  "name":"org.springframework.boot.autoconfigure.data.web.SpringDataWebAutoConfiguration$$Lambda$817/0x0000000840543c40",
+  "name":"org.springframework.boot.autoconfigure.data.web.SpringDataWebAutoConfiguration$$Lambda$826/0x0000000840589040",
   "allDeclaredFields":true,
   "allDeclaredMethods":true,
   "methods":[{"name":"customize","parameterTypes":["org.springframework.data.web.PageableHandlerMethodArgumentResolver"] }]
 },
 {
-  "name":"org.springframework.boot.autoconfigure.data.web.SpringDataWebAutoConfiguration$$Lambda$818/0x0000000840543040",
+  "name":"org.springframework.boot.autoconfigure.data.web.SpringDataWebAutoConfiguration$$Lambda$827/0x0000000840589440",
   "allDeclaredFields":true,
   "allDeclaredMethods":true,
   "methods":[{"name":"customize","parameterTypes":["org.springframework.data.web.SortHandlerMethodArgumentResolver"] }]
