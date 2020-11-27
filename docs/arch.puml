@@ -1,0 +1,60 @@
+@startuml
+cloud {
+[Frontend]
+}
+node "Customer service"{
+[spring-app]
+database "Relational DB"
+}
+
+node "Validation Service" {
+[kotlin-spring]
+}
+
+
+
+
+node "Credit Details Service" {
+[micronaut-app]
+database "MongoDB"
+}
+
+node "Credit Check Service" {
+[Quarkus-app]
+database "open DB"
+
+}
+
+node "Order Service" {
+[open]
+database "Kafka"
+}
+
+
+database "MongoDB"
+
+
+
+
+
+
+[Frontend] -down-> [spring-app]
+[Frontend] -down-> [micronaut-app]
+[Frontend] -down-> [Quarkus-app]
+[Frontend] -down-> [open]
+
+[spring-app] -left-> [kotlin-spring]
+[spring-app] -down-> [Relational DB]
+
+[open] -> [spring-app]
+[open] -> [Quarkus-app]
+[open] -> [micronaut-app]
+[open] -down-> [Kafka]
+
+[Quarkus-app] ->  [micronaut-app]
+[Quarkus-app] -down->  [open DB]
+
+[micronaut-app] ->  [spring-app]
+[micronaut-app] -down->  [MongoDB]
+
+@enduml
