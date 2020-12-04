@@ -7,10 +7,10 @@ services:
       - POSTGRES_PASSWORD=admin
     ports:
       - "5432:5432"
-  customer-service-native:
+  customer-service-jvm:
     build:
       context: ./customer-service
-      dockerfile: docker/native/Dockerfile
+      dockerfile: docker/jvm/Dockerfile
     depends_on:
       - postgres-server
     ports:

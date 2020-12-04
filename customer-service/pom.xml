@@ -170,13 +170,11 @@
 		</dependency>
 
 		<!-- postgres database -->
-		<!--
 		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
 			<scope>runtime</scope>
 		</dependency>
-		-->
 
 		<!-- flyway database migration -->
 		<!-- Issue with flyway and native images: https://github.com/oracle/graal/issues/1108 -->

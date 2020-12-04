@@ -22,15 +22,17 @@ RUN mkdir -p /usr/share/maven /usr/share/maven/ref \
 ENV MAVEN_HOME /usr/share/maven
 # end
 
+RUN mkdir -p .maven-m2
+
 COPY .maven-m2 /build/.maven-m2
 COPY flyway /build/flyway
 COPY src /build/src
 COPY target /build/target
-COPY build.sh pom.xml /build/
+COPY build-native.sh pom.xml /build/
 
 WORKDIR /build
 
-RUN ./build.sh
+RUN ./build-native.sh
 
 
 FROM oraclelinux:7-slim
@@ -40,4 +42,4 @@ WORKDIR /app
 COPY --from=MAVEN_BUILD /build/flyway /app/flyway
 COPY --from=MAVEN_BUILD /build/target/customer-service /app/customer-service
 
-CMD [ "./customer-service", "--spring.profiles.active=h2,native" ]
+CMD [ "./customer-service", "--spring.profiles.active=postgres" ]

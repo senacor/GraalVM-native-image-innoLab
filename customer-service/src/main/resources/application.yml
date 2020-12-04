@@ -7,7 +7,7 @@ spring:
     url: ${spring.datasource.url}
     user: ${spring.datasource.username}
     password: ${spring.datasource.password}
-    locations: "filesystem:./customer-service/flyway"
+    locations: "filesystem:./flyway"
     sql-migration-prefix: "V"
 
 logging:
