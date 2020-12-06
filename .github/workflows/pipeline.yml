@@ -1,0 +1,27 @@
+name: CI-pipeline
+
+
+on:
+  push:
+    branches: [ develop ]
+  pull_request:
+    branches: [ develop ]
+
+jobs:
+  build-graalvm-ce:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        services: [ ../credit-check-service ]
+      fail-fast: false
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: setup-graalvm-ce
+        uses: rinx/setup-graalvm-ce@v0.0.5
+        with:
+          graalvm-version: "20.2.0"
+          java-version: "java11"
+          native-image: "true"
+      - name: Build and test with Maven
+        run: ${{ matrix.services }}mvnw clean verify
