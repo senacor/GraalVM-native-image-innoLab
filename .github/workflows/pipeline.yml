@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        services: [ ./credit-check-service/mvnw clean verify ]
+        services: [credit-check-service ]
       fail-fast: false
     steps:
       - name: Checkout
@@ -24,4 +24,9 @@ jobs:
           java-version: "java11"
           native-image: "true"
       - name: Build and test with Maven
-        run: ${{ matrix.services }}
+        run: -|
+        java -version
+        native-image --version
+        cd ${{ matrix.services }}
+        mvnw clean verify
+
