@@ -28,5 +28,5 @@ jobs:
           java -version
           native-image --version
           cd ${{ matrix.services }}
-          mvnw clean verify
+          ./mvnw clean verify
 
