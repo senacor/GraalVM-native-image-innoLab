@@ -24,7 +24,7 @@ jobs:
           java-version: "java11"
           native-image: "true"
       - name: Build and test with Maven
-        run: -|
+        run: |
         java -version
         native-image --version
         cd ${{ matrix.services }}
