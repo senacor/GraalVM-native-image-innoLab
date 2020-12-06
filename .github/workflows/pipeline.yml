@@ -25,8 +25,6 @@ jobs:
           native-image: "true"
       - name: Build and test with Maven
         run: |
-          java -version
-          native-image --version
           cd ${{ matrix.services }}
-          ./mvnw clean verify
+          ./mvnw clean verify -Pnative
 
