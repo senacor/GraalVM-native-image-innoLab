@@ -7,6 +7,12 @@ services:
       - POSTGRES_PASSWORD=admin
     ports:
       - "5432:5432"
+  validation-service-native:
+    build:
+      context: ./validation-service
+      dockerfile: docker/native/Dockerfile
+    ports:
+      - "8082:8082"
   customer-service-native:
     build:
       context: ./customer-service
