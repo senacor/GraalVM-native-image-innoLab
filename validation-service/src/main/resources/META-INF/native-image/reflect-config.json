@@ -69,6 +69,10 @@
   "name":"com.fasterxml.jackson.databind.deser.ValueInstantiators[]"
 },
 {
+  "name":"com.fasterxml.jackson.databind.ext.Java7HandlersImpl",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
   "name":"com.fasterxml.jackson.databind.ext.Java7SupportImpl",
   "methods":[{"name":"<init>","parameterTypes":[] }]
 },
@@ -112,6 +116,22 @@
 {
   "name":"com.fasterxml.jackson.datatype.jsr310.JavaTimeModule",
   "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"com.fasterxml.jackson.module.kotlin.KotlinModule",
+  "methods":[
+    {"name":"<init>","parameterTypes":[] }, 
+    {"name":"<init>","parameterTypes":["int","boolean","boolean"] }, 
+    {"name":"<init>","parameterTypes":["int","boolean","boolean","boolean"] }, 
+    {"name":"<init>","parameterTypes":["int","boolean","boolean","boolean","com.fasterxml.jackson.module.kotlin.SingletonSupport"] }, 
+    {"name":"<init>","parameterTypes":["com.fasterxml.jackson.module.kotlin.KotlinModule$Builder"] }
+  ]
+},
+{
+  "name":"com.fasterxml.jackson.module.kotlin.KotlinModule$Builder"
+},
+{
+  "name":"com.fasterxml.jackson.module.kotlin.SingletonSupport"
 },
 {
   "name":"com.fasterxml.jackson.module.paramnames.ParameterNamesModule",
@@ -186,13 +206,49 @@
   "methods":[{"name":"<init>","parameterTypes":[] }]
 },
 {
+  "name":"de.senacor.innolab.graalvm.validation.CustomErrorResponse",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true,
+  "allDeclaredConstructors":true
+},
+{
+  "name":"de.senacor.innolab.graalvm.validation.ExceptionHandler",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true,
+  "allDeclaredConstructors":true
+},
+{
   "name":"de.senacor.innolab.graalvm.validation.ValidationServiceApplication",
   "allDeclaredFields":true,
   "allDeclaredMethods":true,
   "allDeclaredConstructors":true
 },
 {
+  "name":"de.senacor.innolab.graalvm.validation.controller.AgeValidationRequest",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true,
+  "allDeclaredConstructors":true
+},
+{
   "name":"de.senacor.innolab.graalvm.validation.controller.HelloController",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true,
+  "allDeclaredConstructors":true
+},
+{
+  "name":"de.senacor.innolab.graalvm.validation.controller.ValidationController",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true,
+  "allDeclaredConstructors":true
+},
+{
+  "name":"de.senacor.innolab.graalvm.validation.exception.DateOfBirthMissingException"
+},
+{
+  "name":"de.senacor.innolab.graalvm.validation.exception.DateOfBirthWithing18YearsException"
+},
+{
+  "name":"de.senacor.innolab.graalvm.validation.service.AgeValidationService",
   "allDeclaredFields":true,
   "allDeclaredMethods":true,
   "allDeclaredConstructors":true
@@ -389,8 +445,18 @@
   "name":"java.lang.Class[]"
 },
 {
+  "name":"java.lang.Deprecated",
+  "allDeclaredMethods":true
+},
+{
   "name":"java.lang.Double",
   "fields":[{"name":"TYPE"}]
+},
+{
+  "name":"java.lang.Exception"
+},
+{
+  "name":"java.lang.Exception[]"
 },
 {
   "name":"java.lang.Float",
@@ -430,6 +496,9 @@
   "allPublicMethods":true
 },
 {
+  "name":"java.lang.Object[]"
+},
+{
   "name":"java.lang.Runtime",
   "methods":[{"name":"version","parameterTypes":[] }]
 },
@@ -456,8 +525,18 @@
   "name":"java.lang.String[]"
 },
 {
+  "name":"java.lang.Throwable",
+  "methods":[{"name":"getSuppressed","parameterTypes":[] }]
+},
+{
+  "name":"java.lang.Throwable[]"
+},
+{
   "name":"java.lang.Void",
   "fields":[{"name":"TYPE"}]
+},
+{
+  "name":"java.lang.annotation.Annotation[]"
 },
 {
   "name":"java.lang.annotation.Documented",
@@ -552,11 +631,19 @@
   "allPublicMethods":true
 },
 {
+  "name":"java.lang.reflect.Executable",
+  "methods":[{"name":"getParameters","parameterTypes":[] }]
+},
+{
   "name":"java.lang.reflect.GenericDeclaration",
   "allPublicMethods":true
 },
 {
   "name":"java.lang.reflect.InaccessibleObjectException"
+},
+{
+  "name":"java.lang.reflect.Parameter",
+  "methods":[{"name":"getName","parameterTypes":[] }]
 },
 {
   "name":"java.lang.reflect.Type",
@@ -604,6 +691,12 @@
   "name":"java.sql.Timestamp"
 },
 {
+  "name":"java.time.Instant"
+},
+{
+  "name":"java.time.LocalDate"
+},
+{
   "name":"java.util.ArrayList"
 },
 {
@@ -616,6 +709,12 @@
   "name":"java.util.HashSet"
 },
 {
+  "name":"java.util.Map"
+},
+{
+  "name":"java.util.Map[]"
+},
+{
   "name":"java.util.Optional",
   "methods":[
     {"name":"get","parameterTypes":[] }, 
@@ -625,6 +724,10 @@
 {
   "name":"java.util.PropertyPermission",
   "methods":[{"name":"<init>","parameterTypes":["java.lang.String","java.lang.String"] }]
+},
+{
+  "name":"java.util.concurrent.Callable",
+  "methods":[{"name":"call","parameterTypes":[] }]
 },
 {
   "name":"java.util.concurrent.Executor"
@@ -750,6 +853,18 @@
   "name":"javax.servlet.http.HttpServletMapping"
 },
 {
+  "name":"javax.servlet.http.HttpServletRequest"
+},
+{
+  "name":"javax.servlet.http.HttpServletRequest[]"
+},
+{
+  "name":"javax.servlet.http.HttpServletResponse"
+},
+{
+  "name":"javax.servlet.http.HttpServletResponse[]"
+},
+{
   "name":"javax.servlet.http.PushBuilder"
 },
 {
@@ -787,6 +902,9 @@
   "allDeclaredMethods":true
 },
 {
+  "name":"kotlin.Unit"
+},
+{
   "name":"kotlin.annotation.AnnotationRetention"
 },
 {
@@ -806,6 +924,20 @@
 {
   "name":"kotlin.annotation.Target",
   "allDeclaredMethods":true
+},
+{
+  "name":"kotlin.jvm.internal.DefaultConstructorMarker"
+},
+{
+  "name":"kotlin.reflect.full.KClasses"
+},
+{
+  "name":"kotlin.reflect.jvm.internal.ReflectionFactoryImpl",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"kotlin.reflect.jvm.internal.impl.resolve.scopes.DescriptorKindFilter",
+  "allPublicFields":true
 },
 {
   "name":"net.logstash.logback.encoder.LogstashEncoder",
@@ -829,7 +961,7 @@
     {"name":"addServlet","parameterTypes":["java.lang.String","java.lang.Class"] }, 
     {"name":"addServlet","parameterTypes":["java.lang.String","java.lang.String"] }, 
     {"name":"addServlet","parameterTypes":["java.lang.String","javax.servlet.Servlet"] }, 
-    {"name":"createFilter","parameterTypes":["java.lang.Class"] }, 
+    {"name":"createFilter","parameterTypes":["java.lang.Class"] },
     {"name":"createListener","parameterTypes":["java.lang.Class"] }, 
     {"name":"createServlet","parameterTypes":["java.lang.Class"] }, 
     {"name":"declareRoles","parameterTypes":["java.lang.String[]"] }, 
@@ -1433,7 +1565,7 @@
   "allDeclaredConstructors":true
 },
 {
-  "name":"org.springframework.boot.actuate.autoconfigure.web.servlet.ServletManagementContextAutoConfiguration$$Lambda$661/0x000000084044f840",
+  "name":"org.springframework.boot.actuate.autoconfigure.web.servlet.ServletManagementContextAutoConfiguration$$Lambda$682/0x00000008404ff040",
   "allDeclaredFields":true,
   "allDeclaredMethods":true
 },
@@ -2612,7 +2744,7 @@
   "allPublicMethods":true
 },
 {
-  "name":"org.springframework.boot.validation.beanvalidation.MethodValidationExcludeFilter$$Lambda$587/0x00000008403f7040",
+  "name":"org.springframework.boot.validation.beanvalidation.MethodValidationExcludeFilter$$Lambda$602/0x000000084049f840",
   "allDeclaredFields":true,
   "allDeclaredMethods":true
 },
@@ -2640,6 +2772,12 @@
   "name":"org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory",
   "allDeclaredFields":true,
   "allDeclaredMethods":true
+},
+{
+  "name":"org.springframework.boot.web.error.ErrorAttributeOptions"
+},
+{
+  "name":"org.springframework.boot.web.error.ErrorAttributeOptions[]"
 },
 {
   "name":"org.springframework.boot.web.server.AbstractConfigurableWebServerFactory",
@@ -2779,6 +2917,8 @@
 },
 {
   "name":"org.springframework.boot.web.servlet.error.ErrorAttributes",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true,
   "allPublicMethods":true
 },
 {
@@ -2969,6 +3109,8 @@
 },
 {
   "name":"org.springframework.core.Ordered",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true,
   "allPublicMethods":true
 },
 {
@@ -3044,6 +3186,11 @@
     {"name":"addPrinter","parameterTypes":["org.springframework.format.Printer"] }, 
     {"name":"setEmbeddedValueResolver","parameterTypes":["org.springframework.util.StringValueResolver"] }
   ]
+},
+{
+  "name":"org.springframework.http.HttpStatus",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true
 },
 {
   "name":"org.springframework.http.ReactiveHttpInputMessage"
@@ -3171,6 +3318,10 @@
   "allDeclaredMethods":true
 },
 {
+  "name":"org.springframework.stereotype.Service",
+  "allDeclaredMethods":true
+},
+{
   "name":"org.springframework.util.AntPathMatcher",
   "allDeclaredFields":true,
   "allDeclaredMethods":true
@@ -3199,6 +3350,9 @@
   "allPublicMethods":true
 },
 {
+  "name":"org.springframework.validation.BindingResult"
+},
+{
   "name":"org.springframework.validation.Validator",
   "allPublicMethods":true
 },
@@ -3216,6 +3370,10 @@
   "allPublicMethods":true
 },
 {
+  "name":"org.springframework.web.bind.annotation.ControllerAdvice",
+  "allDeclaredMethods":true
+},
+{
   "name":"org.springframework.web.bind.annotation.ExceptionHandler",
   "allDeclaredMethods":true
 },
@@ -3224,14 +3382,25 @@
   "allDeclaredMethods":true
 },
 {
+  "name":"org.springframework.web.bind.annotation.RequestBody",
+  "allDeclaredMethods":true
+},
+{
   "name":"org.springframework.web.bind.annotation.RequestMapping",
   "allDeclaredMethods":true
+},
+{
+  "name":"org.springframework.web.bind.annotation.RequestMethod"
 },
 {
   "name":"org.springframework.web.bind.annotation.RequestMethod[]"
 },
 {
   "name":"org.springframework.web.bind.annotation.ResponseBody",
+  "allDeclaredMethods":true
+},
+{
+  "name":"org.springframework.web.bind.annotation.ResponseStatus",
   "allDeclaredMethods":true
 },
 {
@@ -3253,7 +3422,19 @@
   "name":"org.springframework.web.context.WebApplicationContext"
 },
 {
+  "name":"org.springframework.web.context.request.RequestAttributes"
+},
+{
   "name":"org.springframework.web.context.request.RequestContextListener"
+},
+{
+  "name":"org.springframework.web.context.request.ServletWebRequest"
+},
+{
+  "name":"org.springframework.web.context.request.WebRequest"
+},
+{
+  "name":"org.springframework.web.context.request.WebRequest[]"
 },
 {
   "name":"org.springframework.web.context.support.GenericWebApplicationContext"
@@ -3382,6 +3563,8 @@
 },
 {
   "name":"org.springframework.web.servlet.HandlerExceptionResolver",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true,
   "allPublicMethods":true
 },
 {
@@ -3402,6 +3585,12 @@
 {
   "name":"org.springframework.web.servlet.LocaleResolver",
   "allPublicMethods":true
+},
+{
+  "name":"org.springframework.web.servlet.ModelAndView"
+},
+{
+  "name":"org.springframework.web.servlet.ModelAndView[]"
 },
 {
   "name":"org.springframework.web.servlet.RequestToViewNameTranslator",

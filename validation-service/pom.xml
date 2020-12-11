@@ -25,6 +25,7 @@
         <kapt.use.worker.api>true</kapt.use.worker.api>
         <kotlin.compiler.jvmTarget>11</kotlin.compiler.jvmTarget>
         <kotlintest.version>3.4.2</kotlintest.version>
+        <arrow.version>[0.10.5,0.11.0)</arrow.version>
         <mockk.version>1.9.3</mockk.version>
         <start-class>de.senacor.innolab.graalvm.validation.ValidationServiceApplication</start-class>
         <spring-graalvm-native.version>0.9.0-SNAPSHOT</spring-graalvm-native.version>
@@ -95,6 +96,31 @@
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
+        </dependency>
+
+        <!-- Arrow KT -->
+        <dependency>
+            <groupId>io.arrow-kt</groupId>
+            <artifactId>arrow-core-data</artifactId>
+            <version>${arrow.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.arrow-kt</groupId>
+            <artifactId>arrow-annotations</artifactId>
+            <version>${arrow.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.arrow-kt</groupId>
+            <artifactId>arrow-syntax</artifactId>
+            <version>${arrow.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.arrow-kt</groupId>
+            <artifactId>arrow-integrations-jackson-module</artifactId>
+            <version>${arrow.version}</version>
         </dependency>
 
         <!-- Kotlin test -->
