@@ -1,0 +1,17 @@
+version: '3.1'
+services:
+  postgres-server:
+    image: postgres
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=admin
+    ports:
+      - "5432:5432"
+  customer-service-native:
+    build:
+      context: ./customer-service
+      dockerfile: docker/native/Dockerfile
+    depends_on:
+      - postgres-server
+    ports:
+      - "8081:8081"

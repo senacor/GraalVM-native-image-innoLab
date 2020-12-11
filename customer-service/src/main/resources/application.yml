@@ -1,0 +1,23 @@
+server:
+  port : 8081
+spring:
+  application:
+    name: Customer-Service
+  flyway:
+    url: ${spring.datasource.url}
+    user: ${spring.datasource.username}
+    password: ${spring.datasource.password}
+    locations: "filesystem:./flyway"
+    sql-migration-prefix: "V"
+
+logging:
+  level:
+    root: "INFO"
+
+management:
+  security:
+    enabled: false
+  endpoint:
+    health:
+      show-details: always
+      show-components: always
