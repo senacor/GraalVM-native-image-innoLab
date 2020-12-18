@@ -1,5 +1,4 @@
-name: CI-pipeline
-
+name: credit-check-service-pipeline
 on:
   push:
     paths:
