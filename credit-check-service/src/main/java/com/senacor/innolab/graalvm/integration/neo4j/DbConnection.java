@@ -1,4 +1,4 @@
-package com.senacor.innolab.graalvm.db;
+package com.senacor.innolab.graalvm.integration.neo4j;
 
 import com.senacor.innolab.graalvm.web.CheckRequest;
 import org.neo4j.driver.Driver;

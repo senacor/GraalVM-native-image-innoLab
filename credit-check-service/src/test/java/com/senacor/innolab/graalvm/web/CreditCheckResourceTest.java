@@ -13,7 +13,7 @@ class CreditCheckResourceTest {
 
     @Test
     public void POST_checkCreditWithCustomerIdNullReturns400() {
-        CheckRequest requestWithoutCustomerId = new CheckRequest(null,"id");
+        CheckRequest requestWithoutCustomerId = new CheckRequest(null,1L);
 
         given()
                 .when()
@@ -22,40 +22,12 @@ class CreditCheckResourceTest {
                 .post("/credit-check")
                 .then()
                 .statusCode(400)
-                .body(is("{\"parameterViolations\":[{\"constraintType\":\"PARAMETER\",\"path\":\"checkCredit.checkRequest.customerId\",\"message\":\"missing customer id\"}]}"));
-    }
-
-    @Test
-    public void POST_checkCreditWithCustomerIdBlankReturns400() {
-        CheckRequest requestWithoutCustomerId = new CheckRequest("","id");
-
-        given()
-                .when()
-                .body(requestWithoutCustomerId)
-                .contentType(ContentType.JSON)
-                .post("/credit-check")
-                .then()
-                .statusCode(400)
-                .body(is("{\"parameterViolations\":[{\"constraintType\":\"PARAMETER\",\"path\":\"checkCredit.checkRequest.customerId\",\"message\":\"missing customer id\"}]}"));
-    }
-
-    @Test
-    public void POST_checkCreditWithCreditIdBlankReturns400() {
-        CheckRequest requestWithoutCustomerId = new CheckRequest("id","");
-
-        given()
-                .when()
-                .body(requestWithoutCustomerId)
-                .contentType(ContentType.JSON)
-                .post("/credit-check")
-                .then()
-                .statusCode(400)
-                .body(is("{\"parameterViolations\":[{\"constraintType\":\"PARAMETER\",\"path\":\"checkCredit.checkRequest.creditDetailId\",\"message\":\"missing credit detail id\"}]}"));
+                .body(is("{\"parameterViolations\":[{\"constraintType\":\"PARAMETER\",\"path\":\"checkCredit.checkRequest.customerId\",\"message\":\"must not be null\"}]}"));
     }
 
     @Test
     public void POST_checkCreditWithCreditIdNullReturns400() {
-        CheckRequest requestWithoutCustomerId = new CheckRequest("id",null);
+        CheckRequest requestWithoutCustomerId = new CheckRequest(1L,null);
 
         given()
                 .when()
@@ -64,12 +36,13 @@ class CreditCheckResourceTest {
                 .post("/credit-check")
                 .then()
                 .statusCode(400)
-                .body(is("{\"parameterViolations\":[{\"constraintType\":\"PARAMETER\",\"path\":\"checkCredit.checkRequest.creditDetailId\",\"message\":\"missing credit detail id\"}]}"));
+                .body(is("{\"parameterViolations\":[{\"constraintType\":\"PARAMETER\",\"path\":\"checkCredit.checkRequest.creditDetailId\",\"message\":\"must not be null\"}]}"));
     }
+
 
     @Test
     public void POST_checkCreditWithValidRequestReturns200() {
-        CheckRequest requestWithoutCustomerId = new CheckRequest("id","anotherId");
+        CheckRequest requestWithoutCustomerId = new CheckRequest(1L,1L);
 
         given()
                 .when()

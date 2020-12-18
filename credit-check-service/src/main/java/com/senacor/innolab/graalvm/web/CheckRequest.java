@@ -1,34 +1,35 @@
 package com.senacor.innolab.graalvm.web;
 
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 public class CheckRequest {
-    @NotBlank(message = "missing customer id")
-    private String customerId;
-    @NotBlank(message = "missing credit detail id")
-    private String creditDetailId;
+
+    @NotNull(message = "must not be null")
+    private Long customerId;
+    @NotNull(message = "must not be null")
+    private Long creditDetailId;
 
     public CheckRequest() {
     }
 
-    public CheckRequest(String customerId, String creditDetailId) {
+    public CheckRequest(Long customerId, Long creditDetailId) {
         this.customerId = customerId;
         this.creditDetailId = creditDetailId;
     }
 
-    public String getCreditDetailId() {
+    public Long getCreditDetailId() {
         return creditDetailId;
     }
 
-    public void setCreditDetailId(String creditDetailId) {
+    public void setCreditDetailId(Long creditDetailId) {
         this.creditDetailId = creditDetailId;
     }
 
-    public String getCustomerId() {
+    public Long getCustomerId() {
         return customerId;
     }
 
-    public void setCustomerId(String customerId) {
+    public void setCustomerId(Long customerId) {
         this.customerId = customerId;
     }
 }
