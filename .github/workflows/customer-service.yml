@@ -24,4 +24,4 @@ jobs:
       - name: Build and test with Maven
         run: |
           cd customer-service
-          ./mvnw clean verify -Pnative
+          mvn clean verify -Pnative
