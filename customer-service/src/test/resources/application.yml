@@ -17,6 +17,9 @@ spring:
     locations: "filesystem:./flyway"
     sql-migration-prefix: "V"
 
+validation:
+  url: http://test-validation:8080
+
 logging:
   level:
     root: "INFO"

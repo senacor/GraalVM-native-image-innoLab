@@ -19,5 +19,6 @@ services:
       dockerfile: docker/jvm/Dockerfile
     depends_on:
       - postgres-server
+      - validation-service-jvm
     ports:
       - "8081:8081"

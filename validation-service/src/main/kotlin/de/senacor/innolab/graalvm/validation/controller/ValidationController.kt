@@ -1,10 +1,13 @@
 package de.senacor.innolab.graalvm.validation.controller
 
 import de.senacor.innolab.graalvm.validation.service.AgeValidationService
+import mu.KotlinLogging
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
 import org.springframework.web.bind.annotation.*
 import java.time.LocalDate
+
+private val logger = KotlinLogging.logger {}
 
 @RestController
 class ValidationController(val ageValidationService: AgeValidationService) {
@@ -16,6 +19,7 @@ class ValidationController(val ageValidationService: AgeValidationService) {
     )
     @ResponseStatus(HttpStatus.NO_CONTENT)
     fun validateAge(@RequestBody ageValidationRequest: AgeValidationRequest) {
+        logger.info { "Received age validation request for ${ageValidationRequest.dateOfBirth}" }
         ageValidationService.validateAge(ageValidationRequest.dateOfBirth)
     }
 

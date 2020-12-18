@@ -19,5 +19,6 @@ services:
       dockerfile: docker/native/Dockerfile
     depends_on:
       - postgres-server
+      - validation-service-native
     ports:
       - "8081:8081"
