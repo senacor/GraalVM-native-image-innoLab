@@ -11,7 +11,7 @@ public class CheckRequest {
     public CheckRequest() {
     }
 
-    public CheckRequest(@NotBlank() String customerId, @NotBlank String creditDetailId) {
+    public CheckRequest(String customerId, String creditDetailId) {
         this.customerId = customerId;
         this.creditDetailId = creditDetailId;
     }
