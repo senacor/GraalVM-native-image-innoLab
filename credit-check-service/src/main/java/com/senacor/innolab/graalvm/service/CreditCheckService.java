@@ -7,7 +7,7 @@ import com.senacor.innolab.graalvm.integration.customerservice.model.Customer;
 import com.senacor.innolab.graalvm.integration.neo4j.DbConnection;
 import com.senacor.innolab.graalvm.web.CheckRequest;
 import com.senacor.innolab.graalvm.web.CheckResponse;
-import org.neo4j.driver.types.Node;
+import org.eclipse.microprofile.rest.client.inject.RestClient;
 
 import javax.inject.Singleton;
 
@@ -15,28 +15,28 @@ import javax.inject.Singleton;
 public class CreditCheckService {
 
     private DbConnection dbConnection;
+
     private CustomerService customerService;
+
     private CreditDetailService creditDetailService;
 
-    public CreditCheckService(DbConnection dbConnection, CustomerService customerService, CreditDetailService creditDetailService) {
+    public CreditCheckService(DbConnection dbConnection,
+                              @RestClient CustomerService customerService,
+                              @RestClient CreditDetailService creditDetailService) {
         this.dbConnection = dbConnection;
         this.customerService = customerService;
         this.creditDetailService = creditDetailService;
     }
 
     public CheckResponse check(CheckRequest checkRequest){
-        Customer byId = customerService.getById(checkRequest.getCustomerId());
-        CreditDetails creditDetails = creditDetailService.getById(checkRequest.getCreditDetailId());
-
-
+        //Customer byId = customerService.getById(checkRequest.getCustomerId());
+        //CreditDetails creditDetails = creditDetailService.getById(checkRequest.getCreditDetailId());
         // get all active records for the customer from neo
         // check if new credit can be added
         // approve/reject request and persist result
         //return result
+        dbConnection.createNodes(checkRequest);
         return new CheckResponse("dummyId");
     }
 
-    private CheckResponse fromNode(Node node){
-        return new CheckResponse(node.get("name").asString());
-    }
 }

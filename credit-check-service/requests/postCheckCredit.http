@@ -1,0 +1,8 @@
+POST 127.0.0.1:8080/credit-check
+Content-Type: application/json
+Accept: application/json
+
+{
+  "customerId": 5,
+  "creditDetailId": 3
+}
