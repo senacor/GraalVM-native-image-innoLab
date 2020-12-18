@@ -24,4 +24,4 @@ jobs:
       - name: Build and test with Maven
         run: |
           cd customer-service
-          mvn clean verify -Pnative
+          mvn -Dmaven.repo.local=.maven-m2 -Pnative clean verify
