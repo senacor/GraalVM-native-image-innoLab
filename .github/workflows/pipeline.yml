@@ -6,6 +6,8 @@ on:
       - 'credit-check-service/**'
     branches: [ develop ]
   pull_request:
+    paths:
+      - 'credit-check-service/**'
     branches: [ develop ]
 
 jobs:
