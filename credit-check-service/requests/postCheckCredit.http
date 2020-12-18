@@ -3,6 +3,6 @@ Content-Type: application/json
 Accept: application/json
 
 {
-  "customerId": 5,
-  "creditDetailId": 3
+  "customerId": 1,
+  "creditDetailId": 1
 }

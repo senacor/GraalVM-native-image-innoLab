@@ -36,7 +36,9 @@ public class CreditCheckService {
         // approve/reject request and persist result
         //return result
         dbConnection.createNodes(checkRequest);
-        return new CheckResponse("dummyId");
+        return CheckResponse.builder()
+                .checkResult("APPROVED")
+                .build();
     }
 
 }
