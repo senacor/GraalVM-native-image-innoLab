@@ -10,11 +10,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @ApplicationScoped
-public class Neo4jConnector {
+public class DbConnection {
 
     private Driver connector;
 
-    public Neo4jConnector(Driver connector) {
+    public DbConnection(Driver connector) {
         this.connector = connector;
     }
 

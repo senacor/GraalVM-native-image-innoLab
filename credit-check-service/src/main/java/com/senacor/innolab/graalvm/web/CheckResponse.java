@@ -1,20 +1,20 @@
 package com.senacor.innolab.graalvm.web;
 
 public class CheckResponse {
-    private String checkId;
+    private String checkResult;
 
     public CheckResponse() {
     }
 
-    public CheckResponse(String checkId) {
-        this.checkId = checkId;
+    public CheckResponse(String checkResult) {
+        this.checkResult = checkResult;
     }
 
-    public String getCheckId() {
-        return checkId;
+    public String getCheckResult() {
+        return checkResult;
     }
 
-    public void setCheckId(String checkId) {
-        this.checkId = checkId;
+    public void setCheckResult(String checkResult) {
+        this.checkResult = checkResult;
     }
 }

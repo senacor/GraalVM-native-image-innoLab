@@ -1,6 +1,6 @@
 package com.senacor.innolab.graalvm.service;
 
-import com.senacor.innolab.graalvm.db.Neo4jConnector;
+import com.senacor.innolab.graalvm.db.DbConnection;
 import com.senacor.innolab.graalvm.web.CheckRequest;
 import com.senacor.innolab.graalvm.web.CheckResponse;
 import org.neo4j.driver.types.Node;
@@ -10,20 +10,20 @@ import javax.enterprise.context.ApplicationScoped;
 @ApplicationScoped
 public class CreditCheckService {
 
-    private Neo4jConnector neo4jConnector;
+    private DbConnection dbConnection;
 
-    public CreditCheckService(Neo4jConnector neo4jConnector) {
-        this.neo4jConnector = neo4jConnector;
+    public CreditCheckService(DbConnection dbConnection) {
+        this.dbConnection = dbConnection;
     }
 
     public CheckResponse check(CheckRequest checkRequest){
-        //request customer id from customer service
-
-        Node node = neo4jConnector.getNodes(checkRequest).get(0);
-        ///calc rate
-        //save calc rate
-        //return calc rate
-        return fromNode(node);
+        //request customer  from customer service
+        //request credit from credit service
+        // get all active records for the customer from neo
+        // check if new credit can be added
+        // approve/reject request and persist result
+        //return result
+        return new CheckResponse("dummyId");
     }
 
     private CheckResponse fromNode(Node node){
