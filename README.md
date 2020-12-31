@@ -16,7 +16,7 @@ Short description of the Customer Service API:
 
 - Hello message: `curl localhost:8081`
 - Get all customer: `curl localhost:8081/customer`
-- Create customer: `curl -X POST -H "content-Type: application/json" --data "{\"lastName\": \"Mustermann\", , \"birthdate\": \"1990-12-06T12:00:00.000Z\"}" localhost:8081/customer`
+- Create customer: `curl -X POST -H "content-Type: application/json" --data "{\"lastName\": \"Mustermann\", \"birthdate\": \"1990-12-06T12:00:00.000Z\"}" localhost:8081/customer`
 - Get customer: `curl localhost:8081/customer/1`
 - Update customer: `curl -X PUT -H "content-Type: application/json" --data "{\"firstName\": \"Max\"}" localhost:8081/customer/1`
 - Delete customer: `curl -X DELETE localhost:8081/customer/1`
