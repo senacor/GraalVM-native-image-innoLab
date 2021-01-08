@@ -1,0 +1,27 @@
+name: customer-service-pipeline
+on:
+  push:
+    paths:
+      - 'customer-service/**'
+    branches: [ develop ]
+  pull_request:
+    paths:
+      - 'customer-service/**'
+    branches: [ develop ]
+
+jobs:
+  build-graalvm-ce:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: setup-graalvm-ce
+        uses: rinx/setup-graalvm-ce@v0.0.5
+        with:
+          graalvm-version: "20.2.0"
+          java-version: "java11"
+          native-image: "true"
+      - name: Build and test with Maven
+        run: |
+          cd customer-service
+          ./build-native.sh
