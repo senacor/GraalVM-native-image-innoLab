@@ -16,6 +16,7 @@ public class CustomerService {
 
     private CustomerRepository customerRepository;
 
+
     public Collection<Customer> getAllCustomer() {
         return customerRepository.findAll();
     }
