@@ -1,0 +1,17 @@
+target/
+
+# maven release files
+/pom.xml.releaseBackup
+/pom.xml.tag
+/pom.xml.mext
+# maven .m2
+.maven-m2/
+
+*.bak
+.*.swp
+*~
+*.orig
+*.pem
+*.csr
+*.iml
+*.srl

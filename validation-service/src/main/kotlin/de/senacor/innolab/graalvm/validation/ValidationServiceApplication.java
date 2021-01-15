@@ -1,13 +1,12 @@
-package de.senacor.innolab.graalvm.customer;
+package de.senacor.innolab.graalvm.validation;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication(proxyBeanMethods = false)
-public class CustomerServiceApplication {
+public class ValidationServiceApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(CustomerServiceApplication.class, args);
+        SpringApplication.run(ValidationServiceApplication.class, args);
     }
-
 }
