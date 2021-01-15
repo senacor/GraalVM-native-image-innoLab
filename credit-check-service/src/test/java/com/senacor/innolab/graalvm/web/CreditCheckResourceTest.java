@@ -14,14 +14,15 @@ class CreditCheckResourceTest {
 
     @Test
     public void POST_checkCreditWithCustomerIdNullReturns400() {
-        CheckRequest requestWithoutCustomerId = CheckRequest.builder()
-                .customerId(null)
-                .creditDetailId(1L)
-                .build();
+
+        var requestBody = "" +
+                "{\n" +
+                "    \"creditDetailId\": 1\n" +
+                "}\n";
 
         given()
                 .when()
-                .body(requestWithoutCustomerId)
+                .body(requestBody)
                 .contentType(ContentType.JSON)
                 .post("/credit-check")
                 .then()
@@ -31,14 +32,14 @@ class CreditCheckResourceTest {
 
     @Test
     public void POST_checkCreditWithCreditIdNullReturns400() {
-        CheckRequest requestWithoutCustomerId = CheckRequest.builder()
-                .customerId(1L)
-                .creditDetailId(null)
-                .build();
+        var requestBody = "" +
+                "{\n" +
+                "    \"customerId\": 1\n" +
+                "}";
 
         given()
                 .when()
-                .body(requestWithoutCustomerId)
+                .body(requestBody)
                 .contentType(ContentType.JSON)
                 .post("/credit-check")
                 .then()

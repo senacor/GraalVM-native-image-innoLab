@@ -1,37 +1,47 @@
 package com.senacor.innolab.graalvm.integration.neo4j;
 
-import com.senacor.innolab.graalvm.web.CheckRequest;
+import com.senacor.innolab.graalvm.integration.creditdetailservice.model.CreditDetails;
+import com.senacor.innolab.graalvm.integration.customerservice.model.Customer;
+import lombok.extern.jbosslog.JBossLog;
 import org.neo4j.driver.Driver;
 import org.neo4j.driver.Values;
 import org.neo4j.driver.async.ResultCursor;
-import org.neo4j.driver.types.Node;
 
 import javax.inject.Singleton;
-import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
-import java.util.stream.Collectors;
 
 @Singleton
+@JBossLog
 public class DbConnection {
 
-    private Driver connector;
+    private final Driver connector;
 
     public DbConnection(Driver connector) {
         this.connector = connector;
     }
 
-    public void createNodes(CheckRequest checkRequest) {
-        CompletionStage<ResultCursor> customer = connector.asyncSession()
-                .runAsync("MERGE (c:Customer {id: $id})",
-                        Values.parameters("id", checkRequest.getCustomerId()));
+    public void createNodes(Customer customer, CreditDetails creditDetails) {
+        log.infov("create customer {}", customer);
+        CompletionStage<ResultCursor> customerGraphNOde = connector.asyncSession()
+                .runAsync("MERGE (c:Customer {" +
+                                "id: $id, " +
+                                "firstName: $firstName , " +
+                                "lastName: $lastName " +
+                                "})",
+                        Values.parameters(
+                                "id", customer.getId(),
+                                "firstName", customer.getFirstName(),
+                                "lastName", customer.getLastName())
+                );
 
-        CompletionStage<ResultCursor> credit = connector.asyncSession()
+        log.infov("create credit {}", creditDetails);
+        CompletionStage<ResultCursor> creditGraphNode = connector.asyncSession()
                 .runAsync("MERGE (c:Credit {id: $id})",
-                        Values.parameters("id", checkRequest.getCreditDetailId()));
+                        Values.parameters("id", creditDetails.getId()));
 
 
-        CompletableFuture.allOf(customer.toCompletableFuture(),credit.toCompletableFuture())
+        CompletableFuture.allOf(customerGraphNOde.toCompletableFuture(), creditGraphNode.toCompletableFuture())
                 .join();
 
         connector.asyncSession()
@@ -39,7 +49,7 @@ public class DbConnection {
                                 "WHERE c.id = $customerId AND a.id = $creditId " +
                                 "MERGE (c)-[r:APPROVED]->(a) " +
                                 "RETURN type(r)",
-                        Values.parameters("customerId", checkRequest.getCustomerId(), "creditId",checkRequest.getCreditDetailId()))
+                        Values.parameters("customerId", customer.getId(), "creditId", creditDetails.getId()))
                 .toCompletableFuture()
                 .join();
 

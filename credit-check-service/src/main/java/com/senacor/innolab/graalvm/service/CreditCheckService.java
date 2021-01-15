@@ -14,11 +14,10 @@ import javax.inject.Singleton;
 @Singleton
 public class CreditCheckService {
 
-    private DbConnection dbConnection;
+    private final DbConnection dbConnection;
+    private final CustomerService customerService;
 
-    private CustomerService customerService;
-
-    private CreditDetailService creditDetailService;
+    private final CreditDetailService creditDetailService;
 
     public CreditCheckService(DbConnection dbConnection,
                               @RestClient CustomerService customerService,
@@ -29,13 +28,13 @@ public class CreditCheckService {
     }
 
     public CheckResponse check(CheckRequest checkRequest){
-        //Customer byId = customerService.getById(checkRequest.getCustomerId());
+        Customer customer = customerService.getById(checkRequest.getCustomerId());
         //CreditDetails creditDetails = creditDetailService.getById(checkRequest.getCreditDetailId());
-        // get all active records for the customer from neo
-        // check if new credit can be added
-        // approve/reject request and persist result
-        //return result
-        dbConnection.createNodes(checkRequest);
+        CreditDetails creditDetails = CreditDetails.builder() //TODO remove hardcoded value once the credit detail service is available
+                .id(checkRequest.getCreditDetailId())
+                .build();
+
+        dbConnection.createNodes(customer,creditDetails);
         return CheckResponse.builder()
                 .checkResult("APPROVED")
                 .build();

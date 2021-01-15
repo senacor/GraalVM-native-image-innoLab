@@ -1,6 +1,7 @@
 package com.senacor.innolab.graalvm.web;
 
 import com.senacor.innolab.graalvm.service.CreditCheckService;
+import lombok.extern.jbosslog.JBossLog;
 import org.jboss.logging.Logger;
 
 import javax.validation.Valid;
@@ -11,8 +12,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 @Path("/credit-check")
+@JBossLog
 public class CreditCheckResource {
-    private static final Logger LOGGER = Logger.getLogger(CreditCheckResource.class);
 
     private CreditCheckService creditCheckService;
 
@@ -24,7 +25,7 @@ public class CreditCheckResource {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public CheckResponse checkCredit(@Valid CheckRequest checkRequest) {
-        LOGGER.infov("received Request {0}", checkRequest);
+        log.infov("received Request {0}", checkRequest);
         return creditCheckService.check(checkRequest);
     }
 }
