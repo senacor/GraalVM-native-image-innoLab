@@ -19,5 +19,4 @@
 
 .vscode
 .envrc
-.elasticbeanstalk
 Dockerrun.aws.json

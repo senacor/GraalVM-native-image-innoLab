@@ -1,0 +1,17 @@
+global:
+  application_name: innolab-graalvm
+  environment: InnolabGraalvm-env
+  branch: null
+  default_ec2_keyname: null
+  default_platform: Multi-container Docker running on 64bit Amazon Linux
+  default_region: eu-central-1
+  include_git_submodules: true
+  instance_profile: null
+  platform_name: null
+  platform_version: null
+  profile: null
+  repository: null
+  sc: git
+  workspace_type: Application
+deploy:
+  artifact: Dockerrun.aws.json
