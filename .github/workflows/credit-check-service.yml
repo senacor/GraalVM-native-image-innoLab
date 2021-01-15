@@ -1,6 +1,7 @@
 name: credit-check-service-pipeline
 
 on:
+  workflow_dispatch:
   push:
     paths:
       - 'credit-check-service/**'
