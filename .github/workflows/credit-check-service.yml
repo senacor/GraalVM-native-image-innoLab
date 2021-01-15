@@ -1,4 +1,5 @@
 name: credit-check-service-pipeline
+
 on:
   push:
     paths:
@@ -8,6 +9,11 @@ on:
     paths:
       - 'credit-check-service/**'
     branches: [ develop ]
+
+env:
+  SERVICE_NAME: credit-check-service
+  IMAGE_NAME: innolab-graalvm-credit-check-service
+  AWS_DEFAULT_REGION: eu-central-1
 
 jobs:
   build-graalvm-ce:
@@ -21,8 +27,33 @@ jobs:
           graalvm-version: "20.2.0"
           java-version: "java11"
           native-image: "true"
+      - name: Cache Maven packages
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-m2
       - name: Build and test with Maven
         run: |
-          cd credit-check-service
-          ./mvnw clean verify -Pnative
-
+          cd ${{ env.SERVICE_NAME }}
+          ./mvnw clean package -Pnative -Dquarkus.native.container-build=true
+      - name: Build image
+        run: |
+          cd ${{ env.SERVICE_NAME }}
+          docker build -f src/main/docker/Dockerfile.native -t ${{ env.IMAGE_NAME }} .
+      - name: Push to ECR
+        uses: jwalton/gh-ecr-push@v1
+        with:
+          access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          region: ${{ env.AWS_DEFAULT_REGION }}
+          image: ${{ env.IMAGE_NAME }}
+      - name: Build image
+        run: |
+          cat Dockerrun.aws.json.template | AWS_ACCOUNT_ID=${{ secrets.AWS_ACCESS_KEY_ID }} NAME=${{ env.IMAGE_NAME }} TAG=latest envsubst > Dockerrun.aws.json
+      - uses: hmanzur/actions-aws-eb@v1.0.0
+        with:
+          command: 'deploy InnolabGraalvm-env'
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
