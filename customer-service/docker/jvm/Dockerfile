@@ -20,4 +20,4 @@ WORKDIR /app
 COPY --from=MAVEN_BUILD /build/flyway /app/flyway
 COPY --from=MAVEN_BUILD /build/target/customer-service-0.0.1-SNAPSHOT.jar /app/customer-service.jar
 
-CMD [ "java", "-jar", "customer-service.jar", "--spring.profiles.active=postgres" ]
+CMD [ "java", "-jar", "customer-service.jar", "--spring.profiles.active=postgres,validation-jvm" ]

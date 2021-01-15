@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.4.0</version>
+        <relativePath /> <!-- lookup parent from repository -->
+    </parent>
+    <groupId>de.senacor.innolab.graalvm</groupId>
+    <artifactId>validation-service</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>validation-service</name>
+    <description>Service for validating data</description>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <kotlin.version>1.4.10</kotlin.version>
+        <kotlin.code.style>official</kotlin.code.style>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <kotlin.compiler.incremental>true</kotlin.compiler.incremental>
+        <kapt.incremental.apt>true</kapt.incremental.apt>
+        <kapt.use.worker.api>true</kapt.use.worker.api>
+        <kotlin.compiler.jvmTarget>11</kotlin.compiler.jvmTarget>
+        <kotlintest.version>3.4.2</kotlintest.version>
+        <arrow.version>[0.10.5,0.11.0)</arrow.version>
+        <mockk.version>1.9.3</mockk.version>
+        <start-class>de.senacor.innolab.graalvm.validation.ValidationServiceApplication</start-class>
+        <spring-graalvm-native.version>0.9.0-SNAPSHOT</spring-graalvm-native.version>
+        <native-image-maven-plugin.version>20.2.0</native-image-maven-plugin.version>
+    </properties>
+
+    <repositories>
+        <repository>
+            <id>spring-libs-snapshot</id>
+            <url>https://repo.spring.io/libs-snapshot</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+        </repository>
+    </repositories>
+
+    <dependencies>
+        <!-- Kotlin -->
+        <dependency>
+            <groupId>org.jetbrains.kotlin</groupId>
+            <artifactId>kotlin-stdlib</artifactId>
+            <version>${kotlin.version}</version>
+        </dependency>
+
+        <!-- Spring Boot -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
+        <!-- Graal VM -->
+        <dependency>
+            <groupId>org.springframework.experimental</groupId>
+            <artifactId>spring-graalvm-native</artifactId>
+            <version>${spring-graalvm-native.version}</version>
+        </dependency>
+
+        <!-- Logging -->
+        <dependency>
+            <groupId>io.github.microutils</groupId>
+            <artifactId>kotlin-logging</artifactId>
+            <version>1.7.9</version>
+        </dependency>
+        <dependency>
+            <groupId>net.logstash.logback</groupId>
+            <artifactId>logstash-logback-encoder</artifactId>
+            <version>6.3</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
+
+        <!-- Arrow KT -->
+        <dependency>
+            <groupId>io.arrow-kt</groupId>
+            <artifactId>arrow-core-data</artifactId>
+            <version>${arrow.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.arrow-kt</groupId>
+            <artifactId>arrow-annotations</artifactId>
+            <version>${arrow.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.arrow-kt</groupId>
+            <artifactId>arrow-syntax</artifactId>
+            <version>${arrow.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.arrow-kt</groupId>
+            <artifactId>arrow-integrations-jackson-module</artifactId>
+            <version>${arrow.version}</version>
+        </dependency>
+
+        <!-- Kotlin test -->
+        <dependency>
+            <groupId>io.kotlintest</groupId>
+            <artifactId>kotlintest-core</artifactId>
+            <version>${kotlintest.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>io.kotlintest</groupId>
+            <artifactId>kotlintest-assertions</artifactId>
+            <version>${kotlintest.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>io.kotlintest</groupId>
+            <artifactId>kotlintest-assertions-arrow</artifactId>
+            <version>${kotlintest.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>io.kotlintest</groupId>
+            <artifactId>kotlintest-extensions-spring</artifactId>
+            <version>${kotlintest.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>io.kotlintest</groupId>
+            <artifactId>kotlintest-assertions-json</artifactId>
+            <version>${kotlintest.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.ninja-squad</groupId>
+            <artifactId>springmockk</artifactId>
+            <version>2.0.1</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>io.kotlintest</groupId>
+            <artifactId>kotlintest-runner-junit5</artifactId>
+            <version>${kotlintest.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Spring Boot Test -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <sourceDirectory>${project.basedir}/src/main/kotlin</sourceDirectory>
+        <testSourceDirectory>${project.basedir}/src/test/kotlin</testSourceDirectory>
+
+        <testResources>
+            <testResource>
+                <directory>src/test/resources</directory>
+                <filtering>true</filtering>
+            </testResource>
+        </testResources>
+
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.jetbrains.kotlin</groupId>
+                <artifactId>kotlin-maven-plugin</artifactId>
+                <version>${kotlin.version}</version>
+                <configuration>
+                    <jvmTarget>${kotlin.compiler.jvmTarget}</jvmTarget>
+                    <compilerPlugins>
+                        <plugin>spring</plugin>
+                    </compilerPlugins>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>compile</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>compile</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>test-compile</id>
+                        <phase>test-compile</phase>
+                        <goals>
+                            <goal>test-compile</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.jetbrains.kotlin</groupId>
+                        <artifactId>kotlin-maven-allopen</artifactId>
+                        <version>${kotlin.version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+        </plugins>
+    </build>
+
+    <profiles>
+        <profile>
+            <id>native</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.graalvm.nativeimage</groupId>
+                        <artifactId>native-image-maven-plugin</artifactId>
+                        <version>${native-image-maven-plugin.version}</version>
+                        <configuration>
+                            <buildArgs>-J-Xmx10G
+                                -H:+TraceClassInitialization
+                                -H:+ReportExceptionStackTraces
+                                -H:+ReportUnsupportedElementsAtRuntime
+                                -Dspring.graal.remove-unused-autoconfig=true
+                                -Dspring.graal.remove-yaml-support=true
+                            </buildArgs>
+                            <imageName>${project.artifactId}</imageName>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>native-image</goal>
+                                </goals>
+                                <phase>package</phase>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.springframework.boot</groupId>
+                        <artifactId>spring-boot-maven-plugin</artifactId>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+</project>

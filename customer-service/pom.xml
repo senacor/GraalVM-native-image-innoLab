@@ -235,6 +235,7 @@
 								-Dspring.graal.remove-unused-autoconfig=true
 								-Dspring.graal.remove-yaml-support=true
 								--initialize-at-build-time=sun.instrument.InstrumentationImpl
+								-H:EnableURLProtocols=http
 							</buildArgs>
 							<imageName>${project.artifactId}</imageName>
 						</configuration>
