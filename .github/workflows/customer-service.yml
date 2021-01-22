@@ -8,6 +8,10 @@ on:
     paths:
       - 'customer-service/**'
     branches: [ develop ]
+env:
+  SERVICE_NAME: customer-service
+  IMAGE_NAME: innolab-graalvm-customer-service
+  AWS_DEFAULT_REGION: eu-central-1
 
 jobs:
   build-graalvm-ce:
@@ -18,10 +22,27 @@ jobs:
       - name: setup-graalvm-ce
         uses: rinx/setup-graalvm-ce@v0.0.5
         with:
-          graalvm-version: "20.2.0"
+          graalvm-version: "20.3.0"
           java-version: "java11"
           native-image: "true"
+      - name: Cache Maven packages
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-m2
       - name: Build and test with Maven
         run: |
-          cd customer-service
-          ./build-native.sh
+          cd ${{ env.SERVICE_NAME }}
+          ./build.sh
+      - name: Build image
+        run: |
+          cd ${{ env.SERVICE_NAME }}
+          docker build -f docker/native/Dockerfile -t ${{ env.IMAGE_NAME }} .
+      - name: Push to ECR
+        uses: jwalton/gh-ecr-push@v1
+        with:
+          access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          region: ${{ env.AWS_DEFAULT_REGION }}
+          image: ${{ env.IMAGE_NAME }}

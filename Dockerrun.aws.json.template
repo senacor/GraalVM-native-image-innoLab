@@ -6,8 +6,32 @@
         "image": "$AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/innolab-graalvm-credit-check-service:latest",
         "portMappings": [
           {
-            "hostPort": 80,
-            "containerPort": 8080
+            "hostPort": 83,
+            "containerPort": 8083
+          }
+        ],
+        "essential": true,
+        "memory": 128
+      },
+      {
+        "name": "innolab-graalvm-validation-service",
+        "image": "$AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/innolab-graalvm-validation-service:latest",
+        "portMappings": [
+        {
+          "hostPort": 82,
+          "containerPort": 8082
+        }
+        ],
+        "essential": true,
+        "memory": 128
+      },
+      {
+        "name": "innolab-graalvm-customer-service",
+        "image": "$AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/innolab-graalvm-customer-service:latest",
+        "portMappings": [
+          {
+            "hostPort": 81,
+            "containerPort": 8081
           }
         ],
         "essential": true,
