@@ -42,3 +42,10 @@ jobs:
         run: |
           cd ${{ env.SERVICE_NAME }}
           docker build -f src/main/docker/Dockerfile.native -t ${{ env.IMAGE_NAME }} .
+      - name: Push to ECR
+        uses: jwalton/gh-ecr-push@v1
+        with:
+          access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          region: ${{ env.AWS_DEFAULT_REGION }}
+          image: ${{ env.IMAGE_NAME }}
