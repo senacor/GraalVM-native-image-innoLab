@@ -1,12 +1,7 @@
 # See https://github.com/loicmathieu/docker-maven-graalvm/blob/master/Dockerfile
-FROM oracle/graalvm-ce:20.2.0-java11 AS MAVEN_BUILD
-# Graal vm
-RUN gu install native-image
-ENV GRAALVM_HOME=/opt/graalvm-ce-20.2.0
+FROM springci/graalvm-ce:20.2-dev-java11 AS MAVEN_BUILD
 
-RUN yum update -y \
-    # Install git, process tools, lsb-release (common in install instructions for CLIs)
-    && yum -y install git procps wget
+RUN apt-get update && apt install curl -y
 
 # mvn
 ARG MAVEN_VERSION=3.6.3
@@ -35,7 +30,7 @@ WORKDIR /build
 RUN ./build-native.sh
 
 
-FROM oraclelinux:7-slim
+FROM oraclelinux:8-slim
 
 WORKDIR /app
 
