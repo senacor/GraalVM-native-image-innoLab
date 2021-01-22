@@ -51,7 +51,7 @@ jobs:
           image: ${{ env.IMAGE_NAME }}
       - name: Generate Dockerrun.aws.json
         run: |
-          cat Dockerrun.aws.json.template | AWS_ACCOUNT_ID=${{ secrets.AWS_ACCESS_KEY_ID }} NAME=${{ env.IMAGE_NAME }} TAG=latest envsubst > Dockerrun.aws.json
+          cat Dockerrun.aws.json.template | AWS_ACCOUNT_ID=${{ secrets.AWS_ACCESS_KEY_ID }} AWS_REGION=${{ env.AWS_DEFAULT_REGION }} envsubst > Dockerrun.aws.json
       - uses: hmanzur/actions-aws-eb@v1.0.0
         with:
           command: 'deploy InnolabGraalvm-env'

@@ -2,8 +2,8 @@
     "AWSEBDockerrunVersion": 2,
     "containerDefinitions": [
       {
-        "name": "$NAME",
-        "image": "$AWS_ACCOUNT_ID.dkr.ecr.eu-central-1.amazonaws.com/$NAME:$TAG",
+        "name": "innolab-graalvm-credit-check-service",
+        "image": "$AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/innolab-graalvm-credit-check-service:latest",
         "portMappings": [
           {
             "hostPort": 80,
