@@ -12,8 +12,8 @@ on:
     branches: [ develop ]
 
 env:
-  SERVICE_NAME: credit-check-service
-  IMAGE_NAME: innolab-graalvm-credit-check-service
+  SERVICE_NAME: credit-check-service # directory of the service in this repo
+  IMAGE_NAME: innolab-graalvm-credit-check-service # for build and push; referenced in `Dockerrun.aws.json.template`
   AWS_DEFAULT_REGION: eu-central-1
 
 jobs:

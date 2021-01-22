@@ -3,7 +3,7 @@ name: deploy-to-ebs
 on:
   workflow_run:
     workflows: ["credit-check-service-pipeline"]
-    # branches: [develop]
+    branches: [develop]
     types: 
       - completed
 
