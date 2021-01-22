@@ -29,7 +29,7 @@
         <mockk.version>1.9.3</mockk.version>
         <start-class>de.senacor.innolab.graalvm.validation.ValidationServiceApplication</start-class>
         <spring-graalvm-native.version>0.9.0-SNAPSHOT</spring-graalvm-native.version>
-        <native-image-maven-plugin.version>20.2.0</native-image-maven-plugin.version>
+        <native-image-maven-plugin.version>20.3.0</native-image-maven-plugin.version>
     </properties>
 
     <repositories>
@@ -180,7 +180,6 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-
     <build>
         <sourceDirectory>${project.basedir}/src/main/kotlin</sourceDirectory>
         <testSourceDirectory>${project.basedir}/src/test/kotlin</testSourceDirectory>
@@ -245,7 +244,6 @@
                         <version>${native-image-maven-plugin.version}</version>
                         <configuration>
                             <buildArgs>-J-Xmx10G
-                                -H:+TraceClassInitialization
                                 -H:+ReportExceptionStackTraces
                                 -H:+ReportUnsupportedElementsAtRuntime
                                 -Dspring.graal.remove-unused-autoconfig=true
