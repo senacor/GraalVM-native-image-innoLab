@@ -52,7 +52,11 @@ jobs:
       - name: Generate Dockerrun.aws.json
         run: |
           cat Dockerrun.aws.json.template | AWS_ACCOUNT_ID=${{ secrets.AWS_ACCESS_KEY_ID }} AWS_REGION=${{ env.AWS_DEFAULT_REGION }} envsubst > Dockerrun.aws.json
-          cat Dockerrun.aws.json
+      - name: Upload output file
+        uses: actions/upload-artifact@v1
+        with:
+          name: deploy-file
+          path: Dockerrun.aws.json
       - name: Deploy to Elastic Beanstalk
         uses: hmanzur/actions-aws-eb@v1.0.0
         with:
