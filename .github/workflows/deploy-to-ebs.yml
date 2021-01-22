@@ -1,4 +1,4 @@
-name: credit-check-service-pipeline
+name: deploy-to-ebs
 
 on:
   workflow_run:
