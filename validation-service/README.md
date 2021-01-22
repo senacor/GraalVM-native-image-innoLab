@@ -1,6 +1,9 @@
 # Validation-Service
 
-## Steps to create a working native image
+## Steps to create a working native image - OUT-DATED!!!
+
+####These steps are no longer necessary after using different dependencies. Nevertheless these steps help if something gets wrong and the configuration files under `src/main/resources/META-INF/native-image/*.json` need to be adapted manually. In this case the agent can be used to generate the whole configuration files and afterwards the needed parts can be extracted.
+
 
 1. Build jar file with `mvn clean package`
 1. Clear META-INF for native image: `rm src/main/resources/META-INF/native-image/*.json`
