@@ -1,0 +1,1 @@
+./mvnw clean verify -Pnative $1

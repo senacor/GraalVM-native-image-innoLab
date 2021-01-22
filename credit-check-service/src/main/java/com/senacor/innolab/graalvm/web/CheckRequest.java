@@ -1,20 +1,24 @@
 package com.senacor.innolab.graalvm.web;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import javax.validation.constraints.NotNull;
+
+@Builder
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@RegisterForReflection
 public class CheckRequest {
-    private String customerId;
 
-    public CheckRequest() {
-    }
+    @NotNull(message = "must not be null")
+    private Long customerId;
+    @NotNull(message = "must not be null")
+    private Long creditDetailId;
 
-    public CheckRequest(String customerId) {
-        this.customerId = customerId;
-    }
 
-    public String getCustomerId() {
-        return customerId;
-    }
-
-    public void setCustomerId(String customerId) {
-        this.customerId = customerId;
-    }
 }

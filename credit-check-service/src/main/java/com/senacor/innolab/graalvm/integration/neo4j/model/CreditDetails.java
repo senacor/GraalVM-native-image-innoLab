@@ -1,4 +1,4 @@
-package com.senacor.innolab.graalvm.web;
+package com.senacor.innolab.graalvm.integration.neo4j.model;
 
 import io.quarkus.runtime.annotations.RegisterForReflection;
 import lombok.AllArgsConstructor;
@@ -11,6 +11,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @RegisterForReflection
-public class CheckResponse {
-    private String checkResult;
+public class CreditDetails {
+    private String Id;
 }

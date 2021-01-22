@@ -30,3 +30,10 @@ Short description of the Customer Service API:
 - Get customer: `curl localhost:8081/customer/1`
 - Update customer: `curl -X PUT -H "content-Type: application/json" --data "{\"firstName\": \"Max\"}" localhost:8081/customer/1`
 - Delete customer: `curl -X DELETE localhost:8081/customer/1`
+
+
+### Credit-check-service API
+
+The credit check service has only 1 endpoint to check a credit http file specifying this endpoint can be found and executed
+under `credit-check-service/requests/postCHeckCredit.http`
+

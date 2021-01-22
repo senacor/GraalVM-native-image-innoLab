@@ -1,0 +1,17 @@
+POST http://localhost:8081/customer
+content-type: application/json
+
+{
+  "firstName" : "Max",
+  "lastName" : "Musterman"
+}
+######
+
+POST 127.0.0.1:8083/credit-check
+Content-Type: application/json
+Accept: application/json
+
+{
+  "customerId": 1,
+  "creditDetailId": 1
+}

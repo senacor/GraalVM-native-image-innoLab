@@ -1,0 +1,68 @@
+package com.senacor.innolab.graalvm.web;
+
+import io.quarkus.test.junit.QuarkusTest;
+import io.restassured.http.ContentType;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
+
+import static io.restassured.RestAssured.given;
+import static org.hamcrest.CoreMatchers.is;
+
+@QuarkusTest
+class CreditCheckResourceTest {
+
+
+    @Test
+    public void POST_checkCreditWithCustomerIdNullReturns400() {
+
+        var requestBody = "" +
+                "{\n" +
+                "    \"creditDetailId\": 1\n" +
+                "}\n";
+
+        given()
+                .when()
+                .body(requestBody)
+                .contentType(ContentType.JSON)
+                .post("/credit-check")
+                .then()
+                .statusCode(400)
+                .body(is("{\"parameterViolations\":[{\"constraintType\":\"PARAMETER\",\"path\":\"checkCredit.checkRequest.customerId\",\"message\":\"must not be null\"}]}"));
+    }
+
+    @Test
+    public void POST_checkCreditWithCreditIdNullReturns400() {
+        var requestBody = "" +
+                "{\n" +
+                "    \"customerId\": 1\n" +
+                "}";
+
+        given()
+                .when()
+                .body(requestBody)
+                .contentType(ContentType.JSON)
+                .post("/credit-check")
+                .then()
+                .statusCode(400)
+                .body(is("{\"parameterViolations\":[{\"constraintType\":\"PARAMETER\",\"path\":\"checkCredit.checkRequest.creditDetailId\",\"message\":\"must not be null\"}]}"));
+    }
+
+
+    @Test
+    @Disabled
+    public void POST_checkCreditWithValidRequestReturns200() {
+        CheckRequest requestWithoutCustomerId = CheckRequest.builder()
+                .customerId(1L)
+                .creditDetailId(1L)
+                .build();
+
+        given()
+                .when()
+                .body(requestWithoutCustomerId)
+                .contentType(ContentType.JSON)
+                .post("/credit-check")
+                .then()
+                .statusCode(200)
+                .body(is("{\"checkResult\":\"dummyId\"}"));
+    }
+}

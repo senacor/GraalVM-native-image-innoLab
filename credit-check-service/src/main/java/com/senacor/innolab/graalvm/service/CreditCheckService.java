@@ -1,32 +1,43 @@
 package com.senacor.innolab.graalvm.service;
 
-import com.senacor.innolab.graalvm.db.Neo4jConnector;
+import com.senacor.innolab.graalvm.integration.creditdetailservice.CreditDetailService;
+import com.senacor.innolab.graalvm.integration.creditdetailservice.model.CreditDetails;
+import com.senacor.innolab.graalvm.integration.customerservice.CustomerService;
+import com.senacor.innolab.graalvm.integration.customerservice.model.Customer;
+import com.senacor.innolab.graalvm.integration.neo4j.DbConnection;
 import com.senacor.innolab.graalvm.web.CheckRequest;
 import com.senacor.innolab.graalvm.web.CheckResponse;
-import org.neo4j.driver.types.Node;
+import org.eclipse.microprofile.rest.client.inject.RestClient;
 
-import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Singleton;
 
-@ApplicationScoped
+@Singleton
 public class CreditCheckService {
 
-    private Neo4jConnector neo4jConnector;
+    private final DbConnection dbConnection;
+    private final CustomerService customerService;
 
-    public CreditCheckService(Neo4jConnector neo4jConnector) {
-        this.neo4jConnector = neo4jConnector;
+    private final CreditDetailService creditDetailService;
+
+    public CreditCheckService(DbConnection dbConnection,
+                              @RestClient CustomerService customerService,
+                              @RestClient CreditDetailService creditDetailService) {
+        this.dbConnection = dbConnection;
+        this.customerService = customerService;
+        this.creditDetailService = creditDetailService;
     }
 
     public CheckResponse check(CheckRequest checkRequest){
-        //request customer id from customer service
+        Customer customer = customerService.getById(checkRequest.getCustomerId());
+        //CreditDetails creditDetails = creditDetailService.getById(checkRequest.getCreditDetailId());
+        CreditDetails creditDetails = CreditDetails.builder() //TODO remove hardcoded value once the credit detail service is available
+                .id(checkRequest.getCreditDetailId())
+                .build();
 
-        Node node = neo4jConnector.getNodes(checkRequest).get(0);
-        ///calc rate
-        //save calc rate
-        //return calc rate
-        return fromNode(node);
+        dbConnection.createNodes(customer,creditDetails);
+        return CheckResponse.builder()
+                .checkResult("APPROVED")
+                .build();
     }
 
-    private CheckResponse fromNode(Node node){
-        return new CheckResponse(node.get("name").asString());
-    }
 }
