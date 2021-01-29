@@ -2,10 +2,7 @@ name: deploy-to-ebs
 
 on:
   workflow_run:
-    workflows: ["credit-check-service-pipeline",
-                "validation-service-pipeline",
-                "customer-service-pipeline"
-    ]
+    workflows: ["credit-check-service-pipeline"]
     branches: [develop]
     types: 
       - completed
