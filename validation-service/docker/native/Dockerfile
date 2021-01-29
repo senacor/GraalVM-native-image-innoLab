@@ -4,7 +4,7 @@ FROM ghcr.io/graalvm/graalvm-ce:ol7-java11-20.3.0 AS MAVEN_BUILD
 RUN gu install native-image
 ENV GRAALVM_HOME=/opt/graalvm-ce-20.3.0
 
-RUN yum -y update \
+RUN yum update -y \
     # Install git, process tools, lsb-release (common in install instructions for CLIs)
     && yum -y install git procps wget
 
