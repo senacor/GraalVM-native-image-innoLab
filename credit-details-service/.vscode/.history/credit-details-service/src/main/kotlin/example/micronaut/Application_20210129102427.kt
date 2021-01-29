@@ -1,4 +1,4 @@
-package micronaut.demo
+package example.micronaut
 
 import io.micronaut.runtime.Micronaut.*
 
@@ -8,7 +8,7 @@ object Application {
 	fun main(args: Array<String>) {
 		build()
 			.args(*args)
-			.packages("micronaut.demo")
+			.packages("example.micronaut")
 			.start()
 	}
 }

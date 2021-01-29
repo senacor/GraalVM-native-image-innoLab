@@ -1,9 +1,17 @@
-package example.micronaut.model
+package micronaut.demo.model
 
 import io.micronaut.core.annotation.Introspected;
 import javax.persistence.*
 
-@Entity()
+@Entity
 @Table(name = "credit")
 @Introspected
-data class CreditDetails(@Id @GeneratedValue(strategy = GenerationType.AUTO) val id: Long)
+class CreditDetails() {
+
+    @Id
+    var id: Long = -1
+
+    constructor(id: Long) : this() {
+        this.id = id
+    }
+}
