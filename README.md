@@ -2,7 +2,9 @@
 
 ## Start services running with JVM
 
-1. Start docker compose with `docker-compose -f docker-compose-jvm.yaml up`
+1. Start docker compose via provided scripts `install-local.sh` for a jvm docker compose setup or 
+   `install-local-native.sh` for a native image docker compose setup
+
 
 ## Start services running as native image
 
@@ -35,5 +37,6 @@ Short description of the Customer Service API:
 ### Credit-check-service API
 
 The credit check service has only 1 endpoint to check a credit http file specifying this endpoint can be found and executed
-under `credit-check-service/requests/postCHeckCredit.http`
+under `credit-check-service/requests/postCheckCredit.http` if executed against the deployed docker compose, the results can be viewed in the neo4j console
+on `localhost:7474`
 
