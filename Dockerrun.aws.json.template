@@ -1,0 +1,17 @@
+{
+    "AWSEBDockerrunVersion": 2,
+    "containerDefinitions": [
+      {
+        "name": "innolab-graalvm-credit-check-service",
+        "image": "$AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/innolab-graalvm-credit-check-service:latest",
+        "portMappings": [
+          {
+            "hostPort": 80,
+            "containerPort": 8080
+          }
+        ],
+        "essential": true,
+        "memory": 128
+      }
+    ]
+}
