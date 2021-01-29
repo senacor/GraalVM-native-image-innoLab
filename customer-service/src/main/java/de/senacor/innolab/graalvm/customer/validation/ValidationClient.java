@@ -1,6 +1,5 @@
 package de.senacor.innolab.graalvm.customer.validation;
 
-import de.senacor.innolab.graalvm.customer.validation.AgeValidationRequest;
 import de.senacor.innolab.graalvm.customer.validation.config.ValidationConfig;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

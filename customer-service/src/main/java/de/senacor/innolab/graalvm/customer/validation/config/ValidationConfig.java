@@ -8,6 +8,9 @@ import org.springframework.context.annotation.Configuration;
 @Configuration(proxyBeanMethods = false)
 public class ValidationConfig {
 
-    @Value("${validation.url}")
     private String url;
+
+    public ValidationConfig(@Value("${validation.url}") String url) {
+        this.url = url;
+    }
 }
