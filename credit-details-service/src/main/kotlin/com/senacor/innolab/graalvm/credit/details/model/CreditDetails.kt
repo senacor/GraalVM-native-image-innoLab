@@ -7,9 +7,6 @@ import javax.persistence.*
 class CreditDetails(
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    var id: Long? = null,
-
     @Column(nullable = false)
     var identifier: Long
 )
