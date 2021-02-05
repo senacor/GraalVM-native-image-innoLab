@@ -42,25 +42,15 @@ dependencies {
 
 mainClassName = "com.senacor.innolab.graalvm.credit.details.Application"
 
-application {
-    mainClass.set("com.senacor.innolab.graalvm.credit.details.Application")
-}
-
-java {
-    sourceCompatibility = JavaVersion.toVersion("1.8")
-}
-
 tasks {
     compileKotlin {
         kotlinOptions {
-            jvmTarget = "1.8"
+            jvmTarget = "11"
         }
     }
     compileTestKotlin {
         kotlinOptions {
-            jvmTarget = "1.8"
+            jvmTarget = "11"
         }
     }
-
-
 }
