@@ -43,7 +43,7 @@ dependencies {
 mainClassName = "com.senacor.innolab.graalvm.credit.details.Application"
 
 application {
-    mainClass.set("com.senacor.innolab.graalvm.credit.details.ApplicationKt")
+    mainClass.set("com.senacor.innolab.graalvm.credit.details.Application")
 }
 
 java {

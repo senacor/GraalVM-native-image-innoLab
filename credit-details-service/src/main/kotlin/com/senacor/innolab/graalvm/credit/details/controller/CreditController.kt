@@ -1,13 +1,13 @@
-package micronaut.demo.controller
+package com.senacor.innolab.graalvm.credit.details.controller
 
+import com.senacor.innolab.graalvm.credit.details.model.CreditDetails
+import com.senacor.innolab.graalvm.credit.details.repository.CreditDetailsRepository
 import io.micronaut.http.MediaType
 import io.micronaut.http.annotation.Controller
 import io.micronaut.http.annotation.Get
 import io.micronaut.http.annotation.Produces
 import io.reactivex.Flowable
 
-import micronaut.demo.model.CreditDetails
-import micronaut.demo.repository.CreditDetailsRepository
 import java.util.*
 import javax.annotation.PostConstruct
 import javax.inject.Inject
@@ -19,7 +19,7 @@ class CreditController(@Inject private val creditDetailsRepository: CreditDetail
     fun postConstruct() {
         Flowable.just(123_456)
             .map { it.toLong()}
-            .map { CreditDetails(it) }
+            .map { CreditDetails(identifier = it) }
             .forEach {
                 creditDetailsRepository.save(it)
             }
