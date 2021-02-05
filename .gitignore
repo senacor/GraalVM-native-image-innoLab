@@ -22,3 +22,7 @@
 .envrc
 Dockerrun.aws.json
 .sdkmanrc
+.gradle
+.settings
+build
+bin
