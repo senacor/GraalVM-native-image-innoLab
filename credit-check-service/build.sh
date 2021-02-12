@@ -1,1 +1,1 @@
-./mvnw clean verify -Dquarkus.native.container-build=true $1
+./mvnw clean package -Dquarkus.profile=dcjvm
