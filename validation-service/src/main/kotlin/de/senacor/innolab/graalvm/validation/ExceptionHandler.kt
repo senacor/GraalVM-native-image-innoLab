@@ -28,7 +28,8 @@ data class CustomErrorResponse(val error: String, val status: HttpStatus, val ti
     }
 }
 
-private val logger = KotlinLogging.logger {}
+private val logger = KotlinLogging.logger { }
+
 
 @ControllerAdvice
 class ExceptionHandler {
