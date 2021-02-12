@@ -1,0 +1,80 @@
+---
+openapi: 3.0.3
+info:
+  title: Auto generated interface
+  contact:
+    name: Simon Gyimah
+    email: simon.gyimah@senacor.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  version: 0.0.1
+tags:
+  - name: Graal VM InnoLab@Senacor
+    description: Dummy credit check microservice
+paths:
+  /generated:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GeneratedPostRequest'
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneratedPostResponse'
+    get:
+      summary: Get a user by ID
+      parameters:
+        - in: query
+          name: queryValueA
+          schema:
+            type: integer
+          required: true
+          description: Numeric ID of the user to get
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneratedGetResponse'
+
+components:
+  schemas:
+    GeneratedPostRequest:
+      required:
+        - filedA
+        - fieldB
+      type: object
+      properties:
+        filedA:
+          description: A dummy parameter
+          format: int64
+          minimum: 0
+          type: integer
+          nullable: false
+        fieldB:
+          format: int64
+          minimum: 0
+          type: integer
+          nullable: false
+    GeneratedPostResponse:
+      type: object
+      properties:
+        dummyResult:
+          $ref: '#/components/schemas/DummyResult'
+    GeneratedGetResponse:
+      type: object
+      properties:
+        dummyResult:
+          $ref: '#/components/schemas/DummyResult'
+    DummyResult:
+      type: string
+      enum:
+        - DUMMY1
+        - DUMMY2
