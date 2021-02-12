@@ -1,0 +1,6 @@
+target/
+
+# maven release files
+/pom.xml.releaseBackup
+/pom.xml.tag
+/pom.xml.mext
