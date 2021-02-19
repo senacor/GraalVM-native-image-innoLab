@@ -1,4 +1,8 @@
 # GraalVM-native-image-innoLab
+![deploy-to-ebs](https://github.com/senacor/GraalVM-native-image-innoLab/workflows/deploy-to-ebs/badge.svg)
+![credit-check-service-pipeline](https://github.com/senacor/GraalVM-native-image-innoLab/workflows/credit-check-service-pipeline/badge.svg)
+![customer-service-pipeline](https://github.com/senacor/GraalVM-native-image-innoLab/workflows/customer-service-pipeline/badge.svg)
+![validation-service-pipeline](https://github.com/senacor/GraalVM-native-image-innoLab/workflows/validation-service-pipeline/badge.svg)
 
 ## Start services running with JVM
 
