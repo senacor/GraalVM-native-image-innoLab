@@ -36,6 +36,19 @@
         ],
         "essential": true,
         "memory": 128
+      },
+      {
+        "name": "innolab-graalvm-credit-details-service",
+        "image": "$AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/innolab-graalvm-credit-details-service:latest",
+        "portMappings": [
+          {
+            "hostPort": 81,
+            "containerPort": 8080
+          }
+        ],
+        "essential": true,
+        "memory": 128,
+        "entrypoint": "/app/application"
       }
     ]
 }
