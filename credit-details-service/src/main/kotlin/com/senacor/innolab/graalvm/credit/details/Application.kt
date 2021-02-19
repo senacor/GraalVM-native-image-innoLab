@@ -10,5 +10,6 @@ object Application {
 			.args(*args)
 			.packages("com.senacor.innolab.graalvm.credit.details")
 			.start()
+
 	}
 }
