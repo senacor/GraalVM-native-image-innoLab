@@ -9,8 +9,8 @@ import io.micronaut.context.annotation.Executable
 import io.micronaut.data.annotation.Repository
 
 @Repository
-interface CreditDetailsRepository: CrudRepository<CreditDetails, Long> {
+interface CreditDetailsRepository: CrudRepository<CreditDetails, String> {
 
     @Executable
-    override fun findById(@NotNull id: Long): Optional<CreditDetails>
+    override fun findById(@NotNull id: String): Optional<CreditDetails>
 }
