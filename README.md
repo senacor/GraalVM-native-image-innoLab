@@ -44,3 +44,12 @@ The credit check service has only 1 endpoint to check a credit http file specify
 under `credit-check-service/requests/postCheckCredit.http` if executed against the deployed docker compose, the results can be viewed in the neo4j console
 on `localhost:7474`
 
+### Credit Details Service
+
+`http :8080/credit/123456`
+
+## Adding a service to the deployment
+
+* [Configure the LB](https://eu-central-1.console.aws.amazon.com/elasticbeanstalk/home?region=eu-central-1#/environment/configuration?applicationName=innolab-graalvm&environmentId=e-madijthum4) > Load Balancer > 1) Processes and 2) Rules
+* add your pipelien to `.github/_deploy-to-ebs.yml` and create a new pipeline file for your service
+* add your service in `Dockerrun.aws.json.template`
