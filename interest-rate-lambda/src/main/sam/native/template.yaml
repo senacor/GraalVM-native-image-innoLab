@@ -1,0 +1,38 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  Innolab GraalVM und Native Images: Interest Rate Lambda as Native Image
+
+Globals:
+  Function:
+    Timeout: 3
+
+Resources:
+  InterestRateNativeFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ../../../../target/function.zip
+      Handler: not.used.in.provided.runtime
+      Runtime: provided
+      MemorySize: 128
+      Timeout: 15
+      Environment:
+        Variables:
+          DISABLE_SIGNAL_HANDLERS: true
+      Events:
+        InterestRate:
+          Type: Api
+          Properties:
+            Path: /interest-rate
+            Method: post
+
+Outputs:
+  InterestRateNativeApi:
+    Description: "API Gateway endpoint URL for Interest Rate function"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/interest-rate"
+  InterestRateNativeFunction:
+    Description: "Interest Rate Lambda Function ARN"
+    Value: !GetAtt InterestRateNativeFunction.Arn
+  InterestRateNativeFunctionIamRole:
+    Description: "Implicit IAM Role created for Interest Rate function"
+    Value: !GetAtt InterestRateNativeFunctionRole.Arn

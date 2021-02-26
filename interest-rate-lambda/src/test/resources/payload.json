@@ -1,0 +1,12 @@
+{
+  "customerDetails": {
+    "name": "Max Mustermann",
+    "dateOfBirth": "1990-01-01",
+    "income": 2250
+  },
+  "creditDetails": {
+    "amount": 20000,
+    "start": "2021-04-01",
+    "end": "2025-03-31"
+  }
+}

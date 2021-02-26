@@ -1,0 +1,71 @@
+{
+  "body": "{  \"customerDetails\": {    \"name\": \"Max Mustermann\",    \"dateOfBirth\": \"1990-01-01\",    \"income\": 2250  },  \"creditDetails\": {    \"amount\": 20000,    \"start\": \"2021-04-01\",    \"end\": \"2025-03-31\"  }}",
+  "headers": {
+    "Accept": "*/*",
+    "Content-Length": "199",
+    "Content-Type": "application/json",
+    "Host": "localhost:3000",
+    "User-Agent": "curl/7.64.1",
+    "X-Forwarded-Port": "3000",
+    "X-Forwarded-Proto": "http"
+  },
+  "httpMethod": "POST",
+  "isBase64Encoded": false,
+  "multiValueHeaders": {
+    "Accept": [
+      "*/*"
+    ],
+    "Content-Length": [
+      "199"
+    ],
+    "Content-Type": [
+      "application/json"
+    ],
+    "Host": [
+      "localhost:3000"
+    ],
+    "User-Agent": [
+      "curl/7.64.1"
+    ],
+    "X-Forwarded-Port": [
+      "3000"
+    ],
+    "X-Forwarded-Proto": [
+      "http"
+    ]
+  },
+  "multiValueQueryStringParameters": null,
+  "path": "/interest-rate",
+  "pathParameters": null,
+  "queryStringParameters": null,
+  "requestContext": {
+    "accountId": "123456789012",
+    "apiId": "1234567890",
+    "domainName": "localhost:3000",
+    "extendedRequestId": null,
+    "httpMethod": "POST",
+    "identity": {
+      "accountId": null,
+      "apiKey": null,
+      "caller": null,
+      "cognitoAuthenticationProvider": null,
+      "cognitoAuthenticationType": null,
+      "cognitoIdentityPoolId": null,
+      "sourceIp": "127.0.0.1",
+      "user": null,
+      "userAgent": "Custom User Agent String",
+      "userArn": null
+    },
+    "path": "/interest-rate",
+    "protocol": "HTTP/1.1",
+    "requestId": "293f5de0-3be6-4262-8734-6f3ddf3091f5",
+    "requestTime": "26/Feb/2021:13:58:53 +0000",
+    "requestTimeEpoch": 1614347933,
+    "resourceId": "123456",
+    "resourcePath": "/interest-rate",
+    "stage": "Prod"
+  },
+  "resource": "/interest-rate",
+  "stageVariables": null,
+  "version": "1.0"
+}

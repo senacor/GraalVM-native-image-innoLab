@@ -1,0 +1,9 @@
+version = 0.1
+[default]
+[default.deploy]
+[default.deploy.parameters]
+stack_name = "innolab-graalvm-interest-rate-lambda-native"
+s3_bucket = "innolab-graalvm-bucket"
+s3_prefix = "innolab-graalvm"
+region = "eu-central-1"
+capabilities = "CAPABILITY_IAM"
