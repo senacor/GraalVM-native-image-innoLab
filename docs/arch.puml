@@ -4,57 +4,35 @@ cloud {
 }
 node "Customer service"{
 [spring-app]
-database "Relational DB"
+database "Postgres"
 }
 
 node "Validation Service" {
 [kotlin-spring]
 }
 
-
-
-
 node "Credit Details Service" {
 [micronaut-app]
-database "MongoDB"
+database "H2"
 }
 
 node "Credit Check Service" {
 [Quarkus-app]
-database "open DB"
+database "Neo4j"
 
 }
-
-node "Order Service" {
-[open]
-database "Kafka"
-}
-
-
-database "MongoDB"
-
-
-
-
-
 
 [Frontend] -down-> [spring-app]
 [Frontend] -down-> [micronaut-app]
 [Frontend] -down-> [Quarkus-app]
-[Frontend] -down-> [open]
 
 [spring-app] -left-> [kotlin-spring]
-[spring-app] -down-> [Relational DB]
-
-[open] -> [spring-app]
-[open] -> [Quarkus-app]
-[open] -> [micronaut-app]
-[open] -down-> [Kafka]
+[spring-app] -down-> [Postgres]
 
 [Quarkus-app] ->  [micronaut-app]
-[Quarkus-app] -down->  [open DB]
+[Quarkus-app] ->  [spring-app]
+[Quarkus-app] -down->  [Neo4j]
 
-[micronaut-app] ->  [spring-app]
-[micronaut-app] -down->  [MongoDB]
+[micronaut-app] -down->  [H2]
 
 @enduml
