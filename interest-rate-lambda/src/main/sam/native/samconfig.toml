@@ -4,6 +4,6 @@ version = 0.1
 [default.deploy.parameters]
 stack_name = "innolab-graalvm-interest-rate-lambda-native"
 s3_bucket = "innolab-graalvm-bucket"
-s3_prefix = "innolab-graalvm"
+s3_prefix = "interest-rate-lambda-native"
 region = "eu-central-1"
 capabilities = "CAPABILITY_IAM"
