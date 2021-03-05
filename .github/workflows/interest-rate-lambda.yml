@@ -13,7 +13,7 @@ env:
   AWS_DEFAULT_REGION: eu-central-1
 
 jobs:
-  deploy-aws-lambda:
+  deploy-aws-lambda-jvm:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -30,6 +30,10 @@ jobs:
           path: ~/.m2
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-m2
+      - name: Build and test with Maven
+        run: |
+          cd ${{ env.SERVICE_NAME }}
+          ./build.sh
       - name: Deploy AWS Lambda JVM
         uses: tkt-actions/aws-sam-cli@v1
         env:
@@ -37,7 +41,28 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_DEFAULT_REGION: ${{ env.AWS_DEFAULT_REGION }}
         with:
-          cmd: './deploy-aws-jvm.sh'
+          cmd: 'cd interest-rate-lambda/src/main/sam/jvm && sam deploy'
+  deploy-aws-lambda-native:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: setup-jdk
+        uses: actions/setup-java@v1
+        with:
+          java-version: '11' # The OpenJDK version to make available on the path
+          java-package: 'jdk' # The OpenJDK version to make available on the path
+          architecture: 'x64' # defaults to 'x64'
+      - name: Cache Maven packages
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-m2
+      - name: Build and test with Maven
+        run: |
+          cd ${{ env.SERVICE_NAME }}
+          ./build-native.sh
       - name: Deploy AWS Lambda Native
         uses: tkt-actions/aws-sam-cli@v1
         env:
@@ -45,4 +70,4 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_DEFAULT_REGION: ${{ env.AWS_DEFAULT_REGION }}
         with:
-          cmd: './deploy-aws-native.sh'
+          cmd: 'cd interest-rate-lambda/src/main/sam/native && sam deploy'
