@@ -1,0 +1,50 @@
+name: credit-details-service-pipeline
+on:
+  push:
+    paths:
+      - 'credit-details-service/**'
+    branches: [ develop ]
+  pull_request:
+    paths:
+      - 'credit-details-service/**'
+    branches: [ develop ]
+
+env:
+  SERVICE_NAME: credit-details-service # directory of the service in this repo
+  IMAGE_NAME: innolab-graalvm-credit-details-service # for build and push; referenced in `Dockerrun.aws.json.template`
+  AWS_DEFAULT_REGION: eu-central-1
+
+jobs:
+  build-graalvm-ce:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: setup-graalvm-ce
+        uses: rinx/setup-graalvm-ce@v0.0.5
+        with:
+          graalvm-version: "20.2.0"
+          java-version: "java11"
+          native-image: "true"
+      - name: Cache Gradle packages
+        uses: actions/cache@v2
+        with:
+          path: ~/.gradle
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/build.gradle') }}
+          restore-keys: ${{ runner.os }}-gradle
+      - name: Build and test with Gradle
+        run: |
+          cd ${{ env.SERVICE_NAME }}
+          ./gradlew assemble test
+      - name: Build image
+        run: |
+          cd ${{ env.SERVICE_NAME }}
+          ./gradlew dockerBuildNative
+          docker tag ${{ env.SERVICE_NAME }} ${{ env.IMAGE_NAME }}
+      - name: Push to ECR
+        uses: jwalton/gh-ecr-push@v1
+        with:
+          access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          region: ${{ env.AWS_DEFAULT_REGION }}
+          image: ${{ env.IMAGE_NAME }}

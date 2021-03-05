@@ -2,7 +2,11 @@ name: deploy-to-ebs
 
 on:
   workflow_run:
-    workflows: ["credit-check-service-pipeline"]
+    workflows:
+      - credit-check-service-pipeline
+      - validation-service-pipeline
+      - customer-service-pipeline
+      - credit-details-service-pipeline
     branches: [develop]
     types: 
       - completed
@@ -14,6 +18,8 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v2
       - name: Generate Dockerrun.aws.json
         run: |
           cat Dockerrun.aws.json.template | AWS_ACCOUNT_ID=${{ secrets.AWS_ACCOUNT_ID }} AWS_REGION=${{ env.AWS_DEFAULT_REGION }} envsubst > Dockerrun.aws.json

@@ -6,7 +6,49 @@
         "image": "$AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/innolab-graalvm-credit-check-service:latest",
         "portMappings": [
           {
-            "hostPort": 80,
+            "hostPort": 8083,
+            "containerPort": 8083
+          }
+        ],
+        "essential": true,
+        "memory": 128
+      },
+      {
+        "name": "innolab-graalvm-validation-service",
+        "image": "$AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/innolab-graalvm-validation-service:latest",
+        "portMappings": [
+        {
+          "hostPort": 8082,
+          "containerPort": 8082
+        }
+        ],
+        "essential": true,
+        "memory": 128
+      },
+      {
+        "name": "innolab-graalvm-customer-service",
+        "image": "$AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/innolab-graalvm-customer-service:latest",
+        "portMappings": [
+          {
+            "hostPort": 8081,
+            "containerPort": 8081
+          }
+        ],
+        "environment": [
+          {
+            "name": "SPRING_PROFILES_ACTIVE",
+            "value": "h2,validation-native"
+          }
+        ],
+        "essential": true,
+        "memory": 128
+      },
+      {
+        "name": "innolab-graalvm-credit-details-service",
+        "image": "$AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/innolab-graalvm-credit-details-service:latest",
+        "portMappings": [
+          {
+            "hostPort": 8080,
             "containerPort": 8080
           }
         ],
@@ -15,3 +57,4 @@
       }
     ]
 }
+

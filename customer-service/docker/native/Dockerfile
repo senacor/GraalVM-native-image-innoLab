@@ -37,4 +37,4 @@ WORKDIR /app
 COPY --from=MAVEN_BUILD /build/flyway /app/flyway
 COPY --from=MAVEN_BUILD /build/target/customer-service /app/customer-service
 
-CMD [ "./customer-service", "--spring.profiles.active=postgres,validation-native" ]
+CMD [ "./customer-service" ]
