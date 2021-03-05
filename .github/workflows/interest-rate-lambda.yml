@@ -39,10 +39,10 @@ jobs:
         with:
           cmd: './deploy-aws-jvm.sh'
       - name: Deploy AWS Lambda Native
-          uses: tkt-actions/aws-sam-cli@v1
-          env:
-            AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-            AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-            AWS_DEFAULT_REGION: ${{ env.AWS_DEFAULT_REGION }}
-          with:
-            cmd: './deploy-aws-native.sh'
+        uses: tkt-actions/aws-sam-cli@v1
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: ${{ env.AWS_DEFAULT_REGION }}
+        with:
+          cmd: './deploy-aws-native.sh'
