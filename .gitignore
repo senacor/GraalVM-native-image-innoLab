@@ -26,3 +26,5 @@ Dockerrun.aws.json
 .settings
 build
 bin
+.project
+.classpath
