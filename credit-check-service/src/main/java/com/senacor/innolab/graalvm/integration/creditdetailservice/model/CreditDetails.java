@@ -7,6 +7,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Data
@@ -18,5 +19,9 @@ import java.time.LocalDate;
 public class CreditDetails {
 
     private Long id;
+    private BigDecimal amount;
+    private LocalDate start;
+    private LocalDate end;
+    private BigDecimal interestRate;
 
 }

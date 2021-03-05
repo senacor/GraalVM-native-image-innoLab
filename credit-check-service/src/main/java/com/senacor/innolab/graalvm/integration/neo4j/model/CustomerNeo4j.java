@@ -14,10 +14,6 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 @RegisterForReflection
-public class CreditDetails {
-    private String Id;
-    private BigDecimal amount;
-    private LocalDate startTime;
-    private LocalDate endTime;
-    private Long fixedInterestRateInYears;
+public class CustomerNeo4j {
+    private String id;
 }
