@@ -1,0 +1,3 @@
+#!zsh
+
+javac Example.java
