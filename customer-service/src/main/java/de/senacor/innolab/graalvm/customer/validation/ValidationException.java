@@ -1,7 +1,7 @@
 package de.senacor.innolab.graalvm.customer.validation;
 
-import org.springframework.nativex.json.JSONException;
-import org.springframework.nativex.json.JSONObject;
+import org.springframework.boot.configurationprocessor.json.JSONException;
+import org.springframework.boot.configurationprocessor.json.JSONObject;
 import org.springframework.web.client.HttpClientErrorException;
 
 public class ValidationException extends RuntimeException {
