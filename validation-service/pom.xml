@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.4.1</version>
+        <version>2.4.3</version>
         <relativePath /> <!-- lookup parent from repository -->
     </parent>
     <groupId>de.senacor.innolab.graalvm</groupId>
@@ -28,16 +28,16 @@
         <arrow.version>[0.10.5,0.11.0)</arrow.version>
         <mockk.version>1.9.3</mockk.version>
         <start-class>de.senacor.innolab.graalvm.validation.ValidationServiceApplication</start-class>
-        <spring-graalvm-native.version>0.9.0-SNAPSHOT</spring-graalvm-native.version>
-        <native-image-maven-plugin.version>20.3.0</native-image-maven-plugin.version>
+        <spring-native.version>0.9.0</spring-native.version>
+        <native-image-maven-plugin.version>21.0.0.2</native-image-maven-plugin.version>
     </properties>
 
     <dependencies>
         <!-- Graal VM -->
         <dependency>
             <groupId>org.springframework.experimental</groupId>
-            <artifactId>spring-graalvm-native</artifactId>
-            <version>${spring-graalvm-native.version}</version>
+            <artifactId>spring-native</artifactId>
+            <version>${spring-native.version}</version>
         </dependency>
 
         <!-- Kotlin -->
@@ -202,6 +202,29 @@
         </testResources>
 
         <plugins>
+            <plugin>
+                <groupId>org.springframework.experimental</groupId>
+                <artifactId>spring-aot-maven-plugin</artifactId>
+                <version>0.9.0</version>
+                <executions>
+                    <execution>
+                        <id>test-generate</id>
+                        <goals>
+                            <goal>test-generate</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>generate</id>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <removeSpelSupport>true</removeSpelSupport>
+                    <removeYamlSupport>true</removeYamlSupport>
+                </configuration>
+            </plugin>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>

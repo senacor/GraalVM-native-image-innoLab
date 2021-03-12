@@ -1,5 +1,5 @@
 # See https://github.com/loicmathieu/docker-maven-graalvm/blob/master/Dockerfile
-FROM springci/graalvm-ce:20.2-dev-java11 AS MAVEN_BUILD
+FROM springci/graalvm-ce:21.0-dev-java11 AS MAVEN_BUILD
 
 RUN apt-get update && apt install curl -y
 
@@ -30,9 +30,6 @@ RUN ./build-native.sh
 
 
 FROM oraclelinux:8-slim
-
 WORKDIR /app
-
 COPY --from=MAVEN_BUILD /build/target/validation-service /app/validation-service
-
 CMD [ "./validation-service" ]
