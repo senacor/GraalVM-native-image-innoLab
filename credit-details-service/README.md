@@ -1,6 +1,33 @@
 # `credit-details-service`
 
-Getting details for a specific credit:
+Getting details for a specific credit.
+
+## Building the project
+
+### Build and run with a local JDK
+
+```sh
+./gradlew run
+```
+
+### Build and run with Docker
+
+Build:
+```sh
+./gradlew dockerBuild
+
+# or with Native Image:
+./gradlew dockerBuildNative
+```
+
+Run:
+```sh
+docker run -p 8080:8080 credit-details-service:latest
+```
+
+Refer also to the `docker-compose.yml` in the parent directory.
+
+## Accessing the service
 
 ```sh
 ❯ http :8080/credit/123456
