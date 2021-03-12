@@ -3,6 +3,8 @@ package de.senacor.innolab.graalvm.customer.model;
 import lombok.*;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.OffsetDateTime;
 
 @Data
@@ -24,6 +26,9 @@ public class Customer {
     @Column(name = "LASTNAME", nullable = false)
     private String lastName;
 
-    @Column(name = "BIRTHDATE")
-    private OffsetDateTime birthdate;
+    @Column(name = "DATE_OF_BIRTH")
+    private LocalDate dateOfBirth;
+
+    @Column(name = "INCOME", nullable = false)
+    private BigDecimal income;
 }

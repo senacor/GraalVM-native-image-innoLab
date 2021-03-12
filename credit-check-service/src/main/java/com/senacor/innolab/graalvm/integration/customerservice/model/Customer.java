@@ -7,6 +7,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -18,11 +19,9 @@ import java.time.LocalDate;
 public class Customer {
 
     private Long id;
-
     private String firstName;
-
     private String lastName;
-
-    private LocalDate birthdate;
+    private LocalDate dateOfBirth;
+    private BigDecimal income;
 
 }

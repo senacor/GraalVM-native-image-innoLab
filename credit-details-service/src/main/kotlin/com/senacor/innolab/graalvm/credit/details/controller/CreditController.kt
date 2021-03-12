@@ -8,6 +8,7 @@ import io.micronaut.http.annotation.Get
 import io.micronaut.http.annotation.Produces
 import io.reactivex.Flowable
 import org.slf4j.LoggerFactory
+import java.math.BigDecimal
 
 import java.util.*
 import javax.annotation.PostConstruct
@@ -21,13 +22,24 @@ class CreditController(@Inject private val creditDetailsRepository: CreditDetail
     @PostConstruct
     fun postConstruct() {
         Flowable.just(
-            CreditDetails.of("123456", 123456.0, "2020-01-01", "2020-12-31", 1.0),
-            CreditDetails.of("111111", 111111.0, "2019-01-01", "2019-12-31", 1.1)
-        )
-            .forEach {
-                creditDetailsRepository.save(it)
-                logger.debug("Saved credit detail with ID ${it.id}")
-            }
+            CreditDetails.of(
+                "123456",
+                BigDecimal.valueOf(123456),
+                "2020-01-01",
+                "2020-12-31",
+                BigDecimal.valueOf(1)
+            ),
+            CreditDetails.of(
+                "111111",
+                BigDecimal.valueOf(111111),
+                "2019-01-01",
+                "2019-12-31",
+                BigDecimal.valueOf(11, 1)
+            )
+        ).forEach {
+            creditDetailsRepository.save(it)
+            logger.debug("Saved credit detail with ID ${it.id}")
+        }
     }
 
     @Get("/{creditId}")

@@ -18,24 +18,24 @@ class CreditDetails(
 
     @Column
     @JsonFormat(pattern = "yyyy-MM-dd")
-    var startDate: LocalDate,
+    var start: LocalDate,
 
     @Column
     @JsonFormat(pattern = "yyyy-MM-dd")
-    var endDate: LocalDate,
+    var end: LocalDate,
 
     @Column
-    var fixedInterestRateInYears: Double
+    var interestRate: BigDecimal
 ) {
 
     companion object {
-        fun of(id: String, amount: Double, startDate: String, endDate: String, fixedInterestRateInYears: Double) =
+        fun of(id: String, amount: BigDecimal, startDate: String, endDate: String, interestRate: BigDecimal) =
             CreditDetails(
                 id,
-                BigDecimal.valueOf(amount),
+                amount,
                 LocalDate.parse(startDate),
                 LocalDate.parse(endDate),
-                fixedInterestRateInYears
+                interestRate
             )
     }
 }

@@ -20,8 +20,16 @@ services:
     depends_on:
       - postgres-server
       - validation-service-jvm
+    environment:
+      - SPRING_PROFILES_ACTIVE=postgres,validation-jvm
     ports:
       - "8081:8081"
+  credit-details-service-jvm:
+    build:
+      context: ./credit-details-service
+      dockerfile: docker/jvm/Dockerfile
+    ports:
+      - "8080:8080"
   neo4j-server:
     image: neo4j
     environment:
@@ -36,5 +44,6 @@ services:
       dockerfile: src/main/docker/Dockerfile.jvm
     depends_on:
       - neo4j-server
+      - credit-details-service-jvm
     ports:
     - "8083:8083"

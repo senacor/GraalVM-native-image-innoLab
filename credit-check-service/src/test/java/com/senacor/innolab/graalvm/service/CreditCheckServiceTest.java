@@ -5,11 +5,17 @@ import com.senacor.innolab.graalvm.integration.creditdetailservice.model.CreditD
 import com.senacor.innolab.graalvm.integration.customerservice.CustomerService;
 import com.senacor.innolab.graalvm.integration.customerservice.model.Customer;
 import com.senacor.innolab.graalvm.integration.neo4j.DbConnection;
+import com.senacor.innolab.graalvm.integration.neo4j.model.CreditDetailsNeo4j;
+import com.senacor.innolab.graalvm.integration.neo4j.model.CustomerNeo4j;
+import com.senacor.innolab.graalvm.integration.neo4j.model.Relation;
 import com.senacor.innolab.graalvm.web.CheckRequest;
 import com.senacor.innolab.graalvm.web.CheckResponse;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.math.BigDecimal;
+import java.time.LocalDate;
 
 import static org.mockito.Mockito.*;
 
@@ -20,6 +26,8 @@ class CreditCheckServiceTest {
     private CustomerService mockCustomerService;
     private CreditDetailService mockCreditDetailService;
 
+    private final long customerId = 1L;
+    private final long creditDetailsId = 2L;
 
     @BeforeEach
     void setUp() {
@@ -28,61 +36,60 @@ class CreditCheckServiceTest {
         mockCreditDetailService = mock(CreditDetailService.class);
 
         underTest = new CreditCheckService(mockConnection, mockCustomerService, mockCreditDetailService);
+
+        when(mockCustomerService.getById(customerId)).thenReturn(
+                Customer.builder()
+                        .id(customerId)
+                        .firstName("foo")
+                        .lastName("bar")
+                        .dateOfBirth(LocalDate.of(1990, 1, 1))
+                        .income(BigDecimal.valueOf(2500))
+                        .build());
+
+        when(mockCreditDetailService.getById(creditDetailsId)).thenReturn(
+                CreditDetails.builder()
+                        .id(creditDetailsId)
+                        .amount(BigDecimal.valueOf(10000))
+                        .start(LocalDate.of(2020, 1, 1))
+                        .end(LocalDate.of(2022, 12, 31))
+                        .interestRate(BigDecimal.valueOf(125, 2))
+                        .build());
     }
 
     @Test
     void checkFetchesCustomerAndCreditDetails() {
-
-        long creditDetailId = 2L;
-        long customerId = 1L;
         underTest.check(CheckRequest.builder()
                 .customerId(customerId)
-                .creditDetailId(creditDetailId)
+                .creditDetailId(creditDetailsId)
                 .build());
 
         verify(mockCustomerService).getById(customerId);
-        //verify(mockCreditDetailService).getById(creditDetailId); TODO comment in once the credit details servie implementation is available
+        verify(mockCreditDetailService).getById(creditDetailsId);
     }
 
 
     @Test
     void checkWritesCustomerAndCreditDetailsFromServiceCallToDB() {
-        long creditDetailId = 2L;
-        long customerId = 1L;
-
-        Customer testCustomer = Customer
-                .builder()
-                .id(3L)
-                .firstName("foo")
-                .lastName("bar")
-                .build();
-        CreditDetails testCreditDetails = CreditDetails.builder()
-                .id(2L) //TODO change once the credit detail service is implemented
-                .build();
-
-        when(mockCustomerService.getById(customerId)).thenReturn(testCustomer);
-
-        //when(mockCreditDetailService.getById(creditDetailId)).thenReturn(testCreditDetails);
-
         underTest.check(CheckRequest.builder()
                 .customerId(customerId)
-                .creditDetailId(creditDetailId)
+                .creditDetailId(creditDetailsId)
                 .build());
 
-        verify(mockConnection).createNodes(testCustomer, testCreditDetails);
-
+        verify(mockConnection).createNodes(
+                new CustomerNeo4j(String.valueOf(customerId)),
+                new CreditDetailsNeo4j(String.valueOf(creditDetailsId)),
+                Relation.APPROVED
+        );
     }
 
     @Test
     void checkAlwaysReturnsApprove() {
         Assertions.assertThat(underTest.check(CheckRequest.builder()
-                .customerId(1L)
-                .creditDetailId(1L)
+                .customerId(customerId)
+                .creditDetailId(creditDetailsId)
                 .build()))
                 .isEqualTo(CheckResponse.builder()
                         .checkResult("APPROVED")
                         .build());
-
-
     }
 }

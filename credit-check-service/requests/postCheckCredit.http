@@ -4,5 +4,5 @@ Accept: application/json
 
 {
   "customerId": 1,
-  "creditDetailId": 1
+  "creditDetailId": 123456
 }

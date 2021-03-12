@@ -12,6 +12,7 @@ public class CustomerMapper {
                 .id(customer.getId())
                 .firstName(customer.getFirstName())
                 .lastName(customer.getLastName())
-                .birthdate(customer.getBirthdate());
+                .dateOfBirth(customer.getDateOfBirth())
+                .income(customer.getIncome());
     }
 }
