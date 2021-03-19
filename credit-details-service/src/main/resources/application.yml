@@ -10,3 +10,9 @@ datasources:
     schema-generate: CREATE_DROP
     dialect: H2
 jpa.default.properties.hibernate.hbm2ddl.auto: update
+
+client:
+  customer:
+    url: http://localhost:8081
+  interest-rate:
+    url: https://esg8ls2e52.execute-api.eu-central-1.amazonaws.com/Prod

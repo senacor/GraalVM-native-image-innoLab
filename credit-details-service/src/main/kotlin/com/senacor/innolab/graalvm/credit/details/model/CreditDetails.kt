@@ -7,7 +7,7 @@ import javax.persistence.*
 
 @Entity
 @Table(name = "credit")
-class CreditDetails(
+data class CreditDetails(
 
     @Id
     @Column(nullable = false)
@@ -35,6 +35,15 @@ class CreditDetails(
                 amount,
                 LocalDate.parse(startDate),
                 LocalDate.parse(endDate),
+                interestRate
+            )
+
+        fun of(id: String, amount: BigDecimal, start: LocalDate, end: LocalDate, interestRate: BigDecimal) =
+            CreditDetails(
+                id,
+                amount,
+                start,
+                end,
                 interestRate
             )
     }
