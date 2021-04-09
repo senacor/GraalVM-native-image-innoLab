@@ -26,13 +26,4 @@ open class InterestRateClient(
 }
 
 @ConfigurationProperties("client.interest-rate")
-class InterestRateClientConfig {
-    var url: String? = null
-
-    private val logger = LoggerFactory.getLogger(javaClass.name)
-
-    @PostConstruct
-    fun postConstruct() {
-        logger.info("Initialized interest-rate client config: $this")
-    }
-}
+data class InterestRateClientConfig(var url: String? = null)

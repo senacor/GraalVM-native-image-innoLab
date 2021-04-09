@@ -28,12 +28,4 @@ open class CustomerClient(
 }
 
 @ConfigurationProperties("client.customer")
-data class CustomerClientConfig(var url: String? = null) {
-    private val logger = LoggerFactory.getLogger(javaClass.name)
-
-    @PostConstruct
-    fun postConstruct() {
-        url = "http://localhost:8080"
-        logger.info("Initialized customer client config: $this")
-    }
-}
+data class CustomerClientConfig(var url: String? = null)

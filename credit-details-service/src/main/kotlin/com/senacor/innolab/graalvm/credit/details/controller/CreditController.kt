@@ -20,8 +20,6 @@ class CreditController(@Inject private val creditDetailsService: CreditDetailsSe
 
     @PostConstruct
     fun postConstruct() {
-        logger.info("Environment: ${System.getenv()}")
-
         Flowable.just(
             CreditDetails.of(
                 "123456",
