@@ -1,5 +1,0 @@
-{
-  "resources":[
-    {"pattern":"\\Qlogback-spring.xml\\E"}
-  ]
-}

@@ -27,7 +27,15 @@
     "name":"java.util.Map"
   },
   {
+    "name":"org.springframework.web.context.request.ServletWebRequest"
+  },
+  {
     "name":"org.springframework.web.context.request.WebRequest"
+  },
+  {
+    "name":"org.springframework.http.HttpStatus",
+    "allDeclaredFields":true,
+    "allDeclaredMethods":true
   },
   {
     "name":"de.senacor.innolab.graalvm.validation.controller.AgeValidationRequest",

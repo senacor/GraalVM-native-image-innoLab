@@ -1,5 +1,5 @@
 # See https://github.com/loicmathieu/docker-maven-graalvm/blob/master/Dockerfile
-FROM springci/graalvm-ce:20.2-dev-java11 AS MAVEN_BUILD
+FROM springci/graalvm-ce:21.0-dev-java11 AS MAVEN_BUILD
 
 RUN apt-get update && apt install curl -y
 
@@ -20,7 +20,6 @@ ENV MAVEN_HOME /usr/share/maven
 RUN mkdir -p .maven-m2
 
 COPY .maven-m2 /build/.maven-m2
-COPY flyway /build/flyway
 COPY src /build/src
 COPY target /build/target
 COPY build-native.sh pom.xml /build/
@@ -31,10 +30,6 @@ RUN ./build-native.sh
 
 
 FROM oraclelinux:8-slim
-
 WORKDIR /app
-
-COPY --from=MAVEN_BUILD /build/flyway /app/flyway
 COPY --from=MAVEN_BUILD /build/target/customer-service /app/customer-service
-
 CMD [ "./customer-service" ]
