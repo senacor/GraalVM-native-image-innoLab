@@ -1,3 +1,4 @@
+# Dockerfile is only used for docker-compose
 FROM gradle:jdk11 AS BUILD
 COPY src /build/src
 COPY build.gradle gradle.properties micronaut-cli.yml settings.gradle /build/

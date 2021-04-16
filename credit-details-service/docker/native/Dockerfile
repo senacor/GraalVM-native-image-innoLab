@@ -1,3 +1,4 @@
+# Dockerfile is only used for docker-compose
 FROM ghcr.io/graalvm/graalvm-ce:java11-21.0.0 AS GRAALVM
 RUN gu install native-image
 
