@@ -1,9 +1,9 @@
+# Dockerfile is only used for docker-compose
 FROM gradle:jdk11 AS BUILD
 COPY src /build/src
 COPY build.gradle gradle.properties micronaut-cli.yml settings.gradle /build/
 WORKDIR /build
-RUN gradle --no-daemon assemble test
-
+RUN gradle --no-daemon clean assemble test
 
 FROM openjdk:11-jre-slim
 WORKDIR /app

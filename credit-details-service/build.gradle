@@ -38,6 +38,10 @@ dependencies {
     runtimeOnly("ch.qos.logback:logback-classic")
     runtimeOnly("com.fasterxml.jackson.module:jackson-module-kotlin")
     runtimeOnly("com.h2database:h2")
+    testImplementation("io.mockk:mockk:1.9.3")
+    testImplementation("org.junit.jupiter:junit-jupiter-api")
+    testImplementation("io.micronaut.test:micronaut-test-junit5")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
 }
 
 mainClassName = "com.senacor.innolab.graalvm.credit.details.Application"

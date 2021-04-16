@@ -24,6 +24,16 @@ services:
       - SPRING_PROFILES_ACTIVE=postgres,validation-native
     ports:
       - "8081:8081"
+  credit-details-service-native:
+    build:
+      context: ./credit-details-service
+      dockerfile: docker/native/Dockerfile
+    depends_on:
+      - customer-service-native
+    environment:
+      - MICRONAUT_ENVIRONMENTS=dc-native
+    ports:
+      - "8080:8080"
   neo4j-server:
     image: neo4j
     environment:

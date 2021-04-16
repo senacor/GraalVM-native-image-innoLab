@@ -28,6 +28,10 @@ services:
     build:
       context: ./credit-details-service
       dockerfile: docker/jvm/Dockerfile
+    depends_on:
+      - customer-service-jvm
+    environment:
+      - MICRONAUT_ENVIRONMENTS=dc-jvm
     ports:
       - "8080:8080"
   neo4j-server:
