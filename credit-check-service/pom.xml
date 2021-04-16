@@ -89,6 +89,44 @@
   <build>
     <plugins>
       <plugin>
+        <groupId>org.lorislab.maven</groupId>
+        <artifactId>mp-rest-client-maven-plugin</artifactId>
+        <version>0.6.0</version>
+        <executions>
+          <execution>
+            <id>user</id>
+            <goals>
+              <goal>codegen</goal>
+            </goals>
+            <configuration>
+              <inputSpec>src/main/resources/META-INF/openapi.yaml</inputSpec>
+              <output>${project.build.directory}/generated-sources/endpoints</output>
+              <apiPackage>com.senacor.innolab.graalvm.web.api</apiPackage>
+              <modelPackage>com.senacor.innolab.graalvm.web.api.models</modelPackage>
+              <generateSupportingFiles>false</generateSupportingFiles>
+              <apiInterfaceDoc>false</apiInterfaceDoc>
+              <interfaceOnly>false</interfaceOnly>
+              <apiSuffix>Resource</apiSuffix>
+              <fieldGen>LOMBOK</fieldGen>
+              <jsonLib>JACKSON</jsonLib>
+              <annotations>
+                <annotation>javax.enterprise.context.ApplicationScoped</annotation>
+              </annotations>
+              <modelAnnotations>
+                <modelAnnotation>lombok.ToString</modelAnnotation>
+                <modelAnnotation>lombok.Builder</modelAnnotation>
+                <modelAnnotation>lombok.AllArgsConstructor</modelAnnotation>
+                <modelAnnotation>lombok.NoArgsConstructor</modelAnnotation>
+                <modelAnnotation>io.quarkus.runtime.annotations.RegisterForReflection</modelAnnotation>
+              </modelAnnotations>
+              <configOptions>
+                <sourceFolder>api</sourceFolder>
+              </configOptions>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
         <groupId>io.quarkus</groupId>
         <artifactId>quarkus-maven-plugin</artifactId>
         <version>${quarkus-plugin.version}</version>
