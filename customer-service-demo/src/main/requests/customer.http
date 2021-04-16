@@ -1,0 +1,28 @@
+GET localhost:9081/customer
+
+###
+POST localhost:9081/customer
+Content-Type: application/json
+Accept: application/json
+
+{
+  "lastName": "Mustermann",
+  "income": 2500,
+  "dateOfBirth": "1990-06-01"
+}
+
+###
+PUT localhost:9081/customer/1
+Content-Type: application/json
+Accept: application/json
+
+{
+  "firstName": "Max"
+}
+
+###
+GET localhost:9081/customer/1
+Accept: application/json
+
+###
+DELETE localhost:9081/customer/1
