@@ -1,0 +1,14 @@
+[
+  {
+    "name":"de.senacor.innolab.graalvm.demo.validation.CustomErrorResponse",
+    "allDeclaredFields":true,
+    "allDeclaredMethods":true,
+    "allDeclaredConstructors":true
+  },
+  {
+    "name":"de.senacor.innolab.graalvm.demo.validation.exception.DateOfBirthMissingException"
+  },
+  {
+    "name":"de.senacor.innolab.graalvm.demo.validation.exception.DateOfBirthWithing18YearsException"
+  }
+]
