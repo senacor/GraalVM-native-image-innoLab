@@ -76,6 +76,26 @@
 			<artifactId>kotlin-stdlib-jdk8</artifactId>
 		</dependency>
 
+		<!-- Arrow KT -->
+		<dependency>
+			<groupId>io.arrow-kt</groupId>
+			<artifactId>arrow-core</artifactId>
+			<version>0.13.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>io.arrow-kt</groupId>
+			<artifactId>arrow-integrations-jackson-module</artifactId>
+			<version>0.10.5</version>
+		</dependency>
+
+		<!-- Logging -->
+		<dependency>
+			<groupId>io.github.microutils</groupId>
+			<artifactId>kotlin-logging</artifactId>
+			<version>1.7.9</version>
+		</dependency>
+
 		<!-- Test -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

@@ -1,0 +1,20 @@
+POST localhost:9082/validation/age
+Content-Type: application/json
+
+{
+  "dateOfBirth": "1990-06-01"
+}
+
+### Validation error - too young
+POST localhost:9082/validation/age
+Content-Type: application/json
+
+{
+  "dateOfBirth": "2020-06-01"
+}
+
+### Validation error - no date
+POST localhost:9082/validation/age
+Content-Type: application/json
+
+{}
