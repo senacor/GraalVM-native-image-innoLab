@@ -26,3 +26,24 @@ Accept: application/json
 
 ###
 DELETE localhost:9081/customer/1
+
+### Validation Error - Customer too young
+POST localhost:9081/customer
+Content-Type: application/json
+Accept: application/json
+
+{
+  "lastName": "Mustermann",
+  "income": 2500,
+  "dateOfBirth": "2020-06-01"
+}
+
+### Validation Error - No date of birth given
+POST localhost:9081/customer
+Content-Type: application/json
+Accept: application/json
+
+{
+  "lastName": "Mustermann",
+  "income": 2500
+}

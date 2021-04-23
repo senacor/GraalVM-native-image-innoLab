@@ -1,6 +1,7 @@
 package de.senacor.innolab.graalvm.demo.customer;
 
 import de.senacor.innolab.graalvm.demo.customer.exception.CustomerNotFoundException;
+import de.senacor.innolab.graalvm.demo.customer.validation.ValidationException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +24,20 @@ public class CustomerServiceDemoExceptionHandler {
                         .timestamp(Instant.now())
                         .build(),
                 HttpStatus.NOT_FOUND
+        );
+    }
+
+    @ExceptionHandler
+    public ResponseEntity<CustomErrorResponse> handleValidationException(ValidationException ex) {
+        log.error(ex.getMessage(), ex);
+        return new ResponseEntity<>(
+                CustomErrorResponse.builder()
+                        .error("Customer validation failed: " + ex.getMessage())
+                        .details(ex.getDetails())
+                        .status(HttpStatus.PRECONDITION_FAILED)
+                        .timestamp(Instant.now())
+                        .build(),
+                HttpStatus.PRECONDITION_FAILED
         );
     }
 
