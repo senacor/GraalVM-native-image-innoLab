@@ -147,7 +147,9 @@
                         <artifactId>native-image-maven-plugin</artifactId>
                         <version>${graalvm.version}</version>
                         <configuration>
-                            <buildArgs>-J-Xmx10G</buildArgs>
+                            <buildArgs>-J-Xmx10G
+                                --enable-url-protocols=http
+                            </buildArgs>
                             <imageName>${project.artifactId}</imageName>
                         </configuration>
                         <executions>
