@@ -1,5 +1,0 @@
-{
-  "resources":[
-    {"pattern":"\\Qorg/flywaydb/core/internal/version.txt\\E"}
-  ]
-}
