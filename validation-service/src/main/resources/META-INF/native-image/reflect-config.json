@@ -1,49 +1,5 @@
 [
   {
-    "name":"ch.qos.logback.core.ConsoleAppender",
-    "allPublicMethods":true,
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"net.logstash.logback.encoder.LogstashEncoder",
-    "allPublicMethods":true,
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name": "org.springframework.boot.autoconfigure.BackgroundPreinitializer",
-    "methods": [{"name": "<init>", "parameterTypes": []}]
-  },
-  {
-    "name":"kotlin.Metadata",
-    "allDeclaredMethods":true
-  },
-  {
-    "name":"java.time.LocalDate"
-  },
-  {
-    "name":"java.time.Instant"
-  },
-  {
-    "name":"java.util.Map"
-  },
-  {
-    "name":"org.springframework.web.context.request.ServletWebRequest"
-  },
-  {
-    "name":"org.springframework.web.context.request.WebRequest"
-  },
-  {
-    "name":"org.springframework.http.HttpStatus",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true
-  },
-  {
-    "name":"de.senacor.innolab.graalvm.validation.controller.AgeValidationRequest",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true,
-    "allDeclaredConstructors":true
-  },
-  {
     "name":"de.senacor.innolab.graalvm.validation.CustomErrorResponse",
     "allDeclaredFields":true,
     "allDeclaredMethods":true,

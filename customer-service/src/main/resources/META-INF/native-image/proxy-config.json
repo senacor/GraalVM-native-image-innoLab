@@ -1,4 +1,0 @@
-[
-  ["org.springframework.web.bind.annotation.PathVariable","org.springframework.core.annotation.SynthesizedAnnotation"],
-  ["org.springframework.beans.factory.annotation.Qualifier","org.springframework.core.annotation.SynthesizedAnnotation"]
-]

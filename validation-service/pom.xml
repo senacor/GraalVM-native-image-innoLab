@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.4.3</version>
+        <version>2.4.5</version>
         <relativePath /> <!-- lookup parent from repository -->
     </parent>
     <groupId>de.senacor.innolab.graalvm</groupId>
@@ -16,7 +16,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <kotlin.version>1.4.10</kotlin.version>
+        <kotlin.version>1.5.0</kotlin.version>
         <kotlin.code.style>official</kotlin.code.style>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
@@ -25,15 +25,45 @@
         <kapt.use.worker.api>true</kapt.use.worker.api>
         <kotlin.compiler.jvmTarget>11</kotlin.compiler.jvmTarget>
         <kotlintest.version>3.4.2</kotlintest.version>
-        <arrow.version>[0.10.5,0.11.0)</arrow.version>
-        <mockk.version>1.9.3</mockk.version>
         <start-class>de.senacor.innolab.graalvm.validation.ValidationServiceApplication</start-class>
-        <spring-native.version>0.9.0</spring-native.version>
+        <spring-native.version>0.9.1</spring-native.version>
         <native-image-maven-plugin.version>21.0.0.2</native-image-maven-plugin.version>
     </properties>
 
+    <repositories>
+        <repository>
+            <id>spring-release</id>
+            <name>Spring release</name>
+            <url>https://repo.spring.io/release</url>
+        </repository>
+    </repositories>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>spring-release</id>
+            <name>Spring release</name>
+            <url>https://repo.spring.io/release</url>
+        </pluginRepository>
+    </pluginRepositories>
+
     <dependencies>
-        <!-- Graal VM -->
+        <!-- Spring Boot -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
+        <!-- Spring Native -->
         <dependency>
             <groupId>org.springframework.experimental</groupId>
             <artifactId>spring-native</artifactId>
@@ -47,43 +77,17 @@
             <version>${kotlin.version}</version>
         </dependency>
 
-        <!-- Spring Boot -->
+        <!-- Arrow KT -->
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter</artifactId>
+            <groupId>io.arrow-kt</groupId>
+            <artifactId>arrow-core</artifactId>
+            <version>0.13.1</version>
         </dependency>
 
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.apache.tomcat.embed</groupId>
-                    <artifactId>tomcat-embed-core</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.apache.tomcat.embed</groupId>
-                    <artifactId>tomcat-embed-websocket</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-configuration-processor</artifactId>
-            <optional>true</optional>
-        </dependency>
-
-        <!-- Tomcat -->
-        <dependency>
-            <groupId>org.apache.tomcat.experimental</groupId>
-            <artifactId>tomcat-embed-programmatic</artifactId>
-            <version>${tomcat.version}</version>
+            <groupId>io.arrow-kt</groupId>
+            <artifactId>arrow-integrations-jackson-module</artifactId>
+            <version>0.10.5</version>
         </dependency>
 
         <!-- Logging -->
@@ -92,45 +96,12 @@
             <artifactId>kotlin-logging</artifactId>
             <version>1.7.9</version>
         </dependency>
-        <dependency>
-            <groupId>net.logstash.logback</groupId>
-            <artifactId>logstash-logback-encoder</artifactId>
-            <version>6.3</version>
-            <scope>runtime</scope>
-        </dependency>
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
-            <scope>runtime</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-        </dependency>
 
-        <!-- Arrow KT -->
+        <!-- Spring Boot Test -->
         <dependency>
-            <groupId>io.arrow-kt</groupId>
-            <artifactId>arrow-core-data</artifactId>
-            <version>${arrow.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>io.arrow-kt</groupId>
-            <artifactId>arrow-annotations</artifactId>
-            <version>${arrow.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>io.arrow-kt</groupId>
-            <artifactId>arrow-syntax</artifactId>
-            <version>${arrow.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>io.arrow-kt</groupId>
-            <artifactId>arrow-integrations-jackson-module</artifactId>
-            <version>${arrow.version}</version>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
         </dependency>
 
         <!-- Kotlin test -->
@@ -150,29 +121,8 @@
 
         <dependency>
             <groupId>io.kotlintest</groupId>
-            <artifactId>kotlintest-assertions-arrow</artifactId>
-            <version>${kotlintest.version}</version>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>io.kotlintest</groupId>
             <artifactId>kotlintest-extensions-spring</artifactId>
             <version>${kotlintest.version}</version>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>io.kotlintest</groupId>
-            <artifactId>kotlintest-assertions-json</artifactId>
-            <version>${kotlintest.version}</version>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>com.ninja-squad</groupId>
-            <artifactId>springmockk</artifactId>
-            <version>2.0.1</version>
             <scope>test</scope>
         </dependency>
 
@@ -182,14 +132,8 @@
             <version>${kotlintest.version}</version>
             <scope>test</scope>
         </dependency>
-
-        <!-- Spring Boot Test -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
     </dependencies>
+
     <build>
         <sourceDirectory>${project.basedir}/src/main/kotlin</sourceDirectory>
         <testSourceDirectory>${project.basedir}/src/test/kotlin</testSourceDirectory>
@@ -301,51 +245,5 @@
             </build>
         </profile>
     </profiles>
-
-    <repositories>
-        <repository>
-            <id>spring-libs-snapshot</id>
-            <url>https://repo.spring.io/libs-snapshot</url>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-        </repository>
-        <repository>
-            <id>spring-libs-milestone</id>
-            <url>https://repo.spring.io/libs-milestone</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-        </repository>
-    </repositories>
-
-    <pluginRepositories>
-        <pluginRepository>
-            <id>spring-libs-snapshot</id>
-            <url>https://repo.spring.io/libs-snapshot</url>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-        </pluginRepository>
-        <pluginRepository>
-            <id>spring-libs-milestone</id>
-            <url>https://repo.spring.io/libs-milestone</url>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-        </pluginRepository>
-    </pluginRepositories>
 
 </project>
