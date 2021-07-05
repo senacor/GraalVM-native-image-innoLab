@@ -1,0 +1,3 @@
+#!zsh
+
+native-image Example
